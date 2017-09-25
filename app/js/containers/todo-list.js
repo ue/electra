@@ -93,6 +93,9 @@ class TodoList extends React.Component {
                   }
                 />
                 <Divider />
+                <TextField hintText="Email"/>
+                <TextField hintText="Password"/>
+                <Divider />
               </div>
             );
         });

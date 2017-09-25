@@ -21,7 +21,7 @@ export default class TodoAppBar extends React.Component {
     return (
       <div>
     <AppBar
-      title="Material Todo App"
+      title="electra"
       style={{WebkitAppRegion: "drag"}}
       iconElementLeft={
         <IconButton onTouchTap={() => {ipc.send('close-main-window')}}>
@@ -40,6 +40,7 @@ export default class TodoAppBar extends React.Component {
           <MenuItem primaryText="Export to PDF" onTouchTap={ () => {ipc.send('export-to-pdf')} }/>
           <MenuItem primaryText="Minimize" onTouchTap={ () => {ipc.send('minimize')} }/>
           <MenuItem primaryText="Minimize to System Tray" onTouchTap={ () => {ipc.send('minimize-to-tray')} }/>
+          <MenuItem primaryText="About"/>
         </IconMenu>
       }
       />
