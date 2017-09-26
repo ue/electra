@@ -6,7 +6,10 @@ const initialState = () => {
 
 export default function accountItems(state = initialState(), action) {
     switch (action.type) {
-      case 'ACCOUNT_ADDED':``
+      case 'ACCOUNT_ADDED_NAME':
+        return state.concat(action.payload);
+
+      case 'ACCOUNT_ADDED_PASSWORD':
         return state.concat(action.payload);
 
       case 'ACCOUNT_DELETED':

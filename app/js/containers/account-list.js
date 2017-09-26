@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addAccount, deleteAccount, completeAccount} from '../actions/index';
+import {addAccountName, addAccountPassword, deleteAccount, completeAccount} from '../actions/index';
 import uuid from 'node-uuid';
 
 // List
@@ -50,10 +50,18 @@ class AccountList extends React.Component {
   handleSubmit(e) {
     if (e.which === 13) {
       // Dispatch props
-      this.props.addAccount({accountItem: e.target.value, id: uuid.v4(), completed: false});
+      this.props.addAccountName({accountItem: e.target.value, id: uuid.v4(), completed: false});
       // Reset input.
       e.target.value = '';
     }
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    // Dispatch props
+    this.props.addAccountName({accountItem: e.target.value, id: uuid.v4(), completed: false});
+    // Reset input.
+    e.target.value = '';
   }
   
   handleDelete(id) {
@@ -79,7 +87,10 @@ class AccountList extends React.Component {
                 <ListItem
                   className="list-group-item"
                   style={this.handleCompleteStyle(item.completed)}
-                  primaryText={item.accountItem} 
+                  primaryText={
+                    <TextField hintText="Email" value={item.accountItem}/>
+                    
+                  } 
                   leftCheckbox={
                       <Checkbox 
                           checked={item.completed} 
@@ -94,7 +105,7 @@ class AccountList extends React.Component {
                   }
                 />
                 <Divider />
-                <TextField hintText="Email"/>
+                <TextField hintText="Email" value={item.accountItem}/>
                 <TextField hintText="Password"/>
                 <Divider />
               </div>
@@ -129,11 +140,11 @@ class AccountList extends React.Component {
           }
           />
         </Tabs>
-        <FloatingActionButton
+        <TextField
           hintText="What needs to be done?"
-          onClick={this.handleSubmit.bind(this)}
+          onKeyDown={this.handleSubmit.bind(this)}
         />
-        <FloatingActionButton onClick={this.handleSubmit.bind(this)}>
+        <FloatingActionButton onClick={this.handleClick.bind(this)}>
         </FloatingActionButton>
         <Divider />
         <List style={styles}>
@@ -146,6 +157,7 @@ class AccountList extends React.Component {
   }
 }
 
+//
 
 function mapStateToProps(state) {
   return {
@@ -155,7 +167,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addAccount, 
+    addAccountName, 
+    addAccountPassword,
     deleteAccount,
     completeAccount 
   }, dispatch);

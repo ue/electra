@@ -23,8 +23,8 @@ let createWindow = () => {
   mainWindow = new BrowserWindow({
     minWidth: 300, 
     minHeight: 700, 
-    maxWidth: 450, 
-    maxHeight: 700, 
+  //  maxWidth: 450, 
+  //  maxHeight: 700, 
     width: 400,
     height: 700,
     transparent: true, 

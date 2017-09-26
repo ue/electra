@@ -1,6 +1,13 @@
-export function addAccount(account) {
+export function addAccountName(account) {
   return {
-    type: 'ACCOUNT_ADDED',
+    type: 'ACCOUNT_ADDED_NAME',
+    payload: account
+  };
+}
+
+export function addAccountPassword(account) {
+  return {
+    type: 'ACCOUNT_ADDED_PASSWORD',
     payload: account
   };
 }
