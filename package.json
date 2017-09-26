@@ -1,7 +1,7 @@
 {
-  "name": "redux-electron-todo-example",
+  "name": "electra",
   "version": "0.1.0",
-  "description": "React + Redux + Material UI + Electron Todo App",
+  "description": "React + Redux + Material UI + Electron Account App",
   "main": "build/index.js",
   "author": "troyedwardsjr",
   "devDependencies": {

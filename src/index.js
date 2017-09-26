@@ -21,8 +21,12 @@ let mainWindow;
 let createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    minWidth: 400, 
+    minWidth: 300, 
     minHeight: 700, 
+    maxWidth: 450, 
+    maxHeight: 700, 
+    width: 400,
+    height: 700,
     transparent: true, 
     frame: false})
 
@@ -55,7 +59,7 @@ let createWindow = () => {
     mainWindow.restore();
     mainWindow.show();
   });
-  tray.setToolTip('Material Todo App');
+  tray.setToolTip('Material Account App');
   tray.setContextMenu(contextMenu);
 }
 

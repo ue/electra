@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TodoList from '../containers/todo-list';
-import TodoAppBar from '../containers/todo-appbar';
+import AccountList from '../containers/account-list';
+import ElcectraAppBar from '../containers/electra-appbar';
 
 import Paper from 'material-ui/lib/paper';
 
@@ -19,8 +19,8 @@ export default class Main extends React.Component {
     return (
       <div style={styles}>
         <Paper zDepth={2}>
-          <TodoAppBar />
-          <TodoList />
+          <ElcectraAppBar />
+          <AccountList />
         </Paper>
       </div>
     );

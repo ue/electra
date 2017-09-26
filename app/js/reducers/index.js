@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import todoItems from './todoItems.js';
+import accountItems from './accountItems.js';
 
 const rootReducer = combineReducers({
-	todoItems: todoItems
+	accountItems: accountItems
 });
 
 export default rootReducer;

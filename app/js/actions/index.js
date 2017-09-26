@@ -1,20 +1,20 @@
-export function addTodo(todo) {
+export function addAccount(account) {
   return {
-    type: 'TODO_ADDED',
-    payload: todo
+    type: 'ACCOUNT_ADDED',
+    payload: account
   };
 }
 
-export function deleteTodo(id) {
+export function deleteAccount(id) {
   return { 
-    type: 'TODO_DELETED', 
+    type: 'ACCOUNT_DELETED', 
     payload: id 
   }
 }
 
-export function completeTodo(id) {
+export function completeAccount(id) {
   return { 
-    type: 'TODO_COMPLETED', 
+    type: 'ACCOUNT_COMPLETED', 
     payload: id 
   }
 }

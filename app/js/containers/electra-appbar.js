@@ -11,7 +11,7 @@ import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-export default class TodoAppBar extends React.Component {
+export default class ElectraAppBar extends React.Component {
 
   constructor(props) {
     super(props);

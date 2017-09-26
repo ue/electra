@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addTodo, deleteTodo, completeTodo} from '../actions/index';
+import {addAccount, deleteAccount, completeAccount} from '../actions/index';
 import uuid from 'node-uuid';
 
 // List
@@ -11,6 +11,7 @@ import Divider from 'material-ui/lib/divider';
 
 import Checkbox from 'material-ui/lib/checkbox';
 import IconButton from 'material-ui/lib/icon-button';
+import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
 
 import Tabs from 'material-ui/lib/tabs/tabs';
@@ -26,41 +27,41 @@ const styles = {
     overflowY: 'auto'
 }
 
-const TODO_FILTERS = {
+const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
-  SHOW_ACTIVE: todo => !todo.completed,
-  SHOW_COMPLETED: todo => todo.completed
+  SHOW_ACTIVE: account => !account.completed,
+  SHOW_COMPLETED: account => account.completed
 }
 
-class TodoList extends React.Component {
+class AccountList extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = { filter: TODO_FILTERS.SHOW_ALL }
+    this.state = { filter: ACCOUNT_FILTERS.SHOW_ALL }
 
     this.handleDelete = this.handleDelete.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
-    localStorage.setItem('todos', JSON.stringify(nextProps.todoItems));
+    localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
   }
 
   handleSubmit(e) {
     if (e.which === 13) {
       // Dispatch props
-      this.props.addTodo({todoItem: e.target.value, id: uuid.v4(), completed: false});
+      this.props.addAccount({accountItem: e.target.value, id: uuid.v4(), completed: false});
       // Reset input.
       e.target.value = '';
     }
   }
   
   handleDelete(id) {
-    this.props.deleteTodo(id);
+    this.props.deleteAccount(id);
   }
 
   handleComplete(id) {
-    this.props.completeTodo(id);
+    this.props.completeAccount(id);
   }
 
   handleCompleteStyle(bool) {
@@ -70,15 +71,15 @@ class TodoList extends React.Component {
   }
 
     renderList() {
-      if (this.props.todoItems != null) {
-        let shownTodoList = this.props.todoItems.filter(this.state.filter);
-        return shownTodoList.map((item) => {
+      if (this.props.accountItems != null) {
+        let shownAccountList = this.props.accountItems.filter(this.state.filter);
+        return shownAccountList.map((item) => {
             return(   
               <div key={item.id}>
                 <ListItem
                   className="list-group-item"
                   style={this.handleCompleteStyle(item.completed)}
-                  primaryText={item.todoItem} 
+                  primaryText={item.accountItem} 
                   leftCheckbox={
                       <Checkbox 
                           checked={item.completed} 
@@ -110,28 +111,30 @@ class TodoList extends React.Component {
             icon={<FontIcon className="material-icons">assignment</FontIcon>}
             label="All"
             onActive={ () => {
-              this.setState({filter: TODO_FILTERS.SHOW_ALL});} 
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});} 
             }
           />
           <Tab
             icon={<FontIcon className="material-icons">alarm</FontIcon>}
             label="Active"
             onActive={() => {
-              this.setState({filter: TODO_FILTERS.SHOW_ACTIVE});}
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});}
           }
           />
           <Tab
             icon={<FontIcon className="material-icons">delete</FontIcon>}
             label="Completed"
             onActive={ () => {
-              this.setState({filter: TODO_FILTERS.SHOW_COMPLETED});} 
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_COMPLETED});} 
           }
           />
         </Tabs>
-        <TextField
+        <FloatingActionButton
           hintText="What needs to be done?"
-          onKeyDown={this.handleSubmit.bind(this)}
+          onClick={this.handleSubmit.bind(this)}
         />
+        <FloatingActionButton onClick={this.handleSubmit.bind(this)}>
+        </FloatingActionButton>
         <Divider />
         <List style={styles}>
           {
@@ -146,16 +149,16 @@ class TodoList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    todoItems: state.todoItems
+    accountItems: state.accountItems
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addTodo, 
-    deleteTodo,
-    completeTodo 
+    addAccount, 
+    deleteAccount,
+    completeAccount 
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountList);
