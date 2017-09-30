@@ -60,8 +60,13 @@ class AccountList extends React.Component {
     e.preventDefault();
     // Dispatch props
     this.props.addAccountName({accountItem: e.target.value, id: uuid.v4(), completed: false});
+    
     // Reset input.
     e.target.value = '';
+  }
+
+  handleClickedLock(e) {
+
   }
   
   handleDelete(id) {
@@ -105,7 +110,7 @@ class AccountList extends React.Component {
                   }
                 />
                 <Divider />
-                <TextField hintText="Email" value={item.accountItem}/>
+                <TextField disabled="false" hintText="Email" value={item.accountItem}/>
                 <TextField hintText="Password"/>
                 <Divider />
               </div>
@@ -120,31 +125,29 @@ class AccountList extends React.Component {
         <Tabs>
           <Tab
             icon={<FontIcon className="material-icons">assignment</FontIcon>}
-            label="All"
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});} 
             }
           />
           <Tab
             icon={<FontIcon className="material-icons">alarm</FontIcon>}
-            label="Active"
             onActive={() => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});}
           }
           />
           <Tab
             icon={<FontIcon className="material-icons">delete</FontIcon>}
-            label="Completed"
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_COMPLETED});} 
           }
           />
         </Tabs>
-        <TextField
-          hintText="What needs to be done?"
-          onKeyDown={this.handleSubmit.bind(this)}
-        />
-        <FloatingActionButton onClick={this.handleClick.bind(this)}>
+
+        <FloatingActionButton className="addButton" onClick={this.handleClick.bind(this)}>
+          <i className="material-icons" style={{color: 'white'}}>add</i>
+        </FloatingActionButton>
+        <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
+          <i className="material-icons" style={{color: 'white'}}>lock</i>          
         </FloatingActionButton>
         <Divider />
         <List style={styles}>
@@ -172,6 +175,11 @@ function mapDispatchToProps(dispatch) {
     deleteAccount,
     completeAccount 
   }, dispatch);
+}
+
+function _isClickedEditButton () {
+
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountList);
