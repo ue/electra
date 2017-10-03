@@ -47,22 +47,13 @@ class AccountList extends React.Component {
     localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
   }
 
-  handleSubmit(e) {
-    if (e.which === 13) {
-      // Dispatch props
-      this.props.addAccountName({accountItem: e.target.value, id: uuid.v4(), completed: false});
-      // Reset input.
-      e.target.value = '';
-    }
-  }
-
+  // arti butonun tiklandiginda tetiklenen event e.target.value inputtaki degeri aliyor bos 
+  //gondermek gerekiyor 
   handleClick(e) {
     e.preventDefault();
     // Dispatch props
-    this.props.addAccountName({accountItem: e.target.value, id: uuid.v4(), completed: false});
-    
-    // Reset input.
-    e.target.value = '';
+    this.props.addAccountName({accountItem: "account name", id: uuid.v4(), completed: false});
+    this.props.addAccountPassword({password: "sifre", id: uuid.v4(), completed: false});
   }
 
   handleClickedLock(e) {
@@ -110,7 +101,7 @@ class AccountList extends React.Component {
                   }
                 />
                 <Divider />
-                <TextField disabled="false" hintText="Email" value={item.accountItem}/>
+                <TextField hintText="Email" value={item.password}/>
                 <TextField hintText="Password"/>
                 <Divider />
               </div>
@@ -164,7 +155,8 @@ class AccountList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    accountItems: state.accountItems
+    accountItems: state.accountItems,
+    Password: state.password
   }
 }
 

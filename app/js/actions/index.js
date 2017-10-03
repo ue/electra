@@ -5,10 +5,10 @@ export function addAccountName(account) {
   };
 }
 
-export function addAccountPassword(account) {
+export function addAccountPassword(password) {
   return {
     type: 'ACCOUNT_ADDED_PASSWORD',
-    payload: account
+    payload: password
   };
 }
 
