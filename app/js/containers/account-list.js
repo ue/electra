@@ -52,8 +52,7 @@ class AccountList extends React.Component {
   handleClick(e) {
     e.preventDefault();
     // Dispatch props
-    this.props.addAccountName({accountItem: "account name", id: uuid.v4(), completed: false});
-    this.props.addAccountPassword({password: "sifre", id: uuid.v4(), completed: false});
+    this.props.addAccountName({accountItem: e.target.value, id: uuid.v4()});
   }
 
   handleClickedLock(e) {
@@ -61,7 +60,7 @@ class AccountList extends React.Component {
   }
   
   handleDelete(id) {
-    this.props.deleteAccount(id);
+    this.props.s(id);
   }
 
   handleComplete(id) {
@@ -74,36 +73,25 @@ class AccountList extends React.Component {
     }
   }
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      console.log('do validate');
+    }
+  }
+
     renderList() {
       if (this.props.accountItems != null) {
         let shownAccountList = this.props.accountItems.filter(this.state.filter);
         return shownAccountList.map((item) => {
-            return(   
+            return(
               <div key={item.id}>
-                <ListItem
-                  className="list-group-item"
-                  style={this.handleCompleteStyle(item.completed)}
-                  primaryText={
-                    <TextField hintText="Email" value={item.accountItem}/>
-                    
-                  } 
-                  leftCheckbox={
-                      <Checkbox 
-                          checked={item.completed} 
-                          onCheck={() => this.handleComplete(item.id)}
-                      />
-                  }
-                  rightIconButton={
-                      <IconButton 
-                      onTouchTap={() => this.handleDelete(item.id)} >
-                          <NavigationClose />
-                      </IconButton>
-                  }
-                />
-                <Divider />
-                <TextField hintText="Email" value={item.password}/>
-                <TextField hintText="Password"/>
-                <Divider />
+            
+                  <TextField hintText="Email" onKeyPress="{}" value={item.accountItem}/>
+                  <TextField hintText="Password" value={item.password}/>
+                  <IconButton onTouchTap={() => this.handleDelete(item.id)} >
+                    <NavigationClose />
+                  </IconButton>
+                  <Divider />
               </div>
             );
         });
@@ -117,7 +105,7 @@ class AccountList extends React.Component {
           <Tab
             icon={<FontIcon className="material-icons">assignment</FontIcon>}
             onActive={ () => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});} 
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});}
             }
           />
           <Tab
@@ -138,7 +126,7 @@ class AccountList extends React.Component {
           <i className="material-icons" style={{color: 'white'}}>add</i>
         </FloatingActionButton>
         <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
-          <i className="material-icons" style={{color: 'white'}}>lock</i>          
+          <i className="material-icons" style={{color: 'white'}}>lock</i>
         </FloatingActionButton>
         <Divider />
         <List style={styles}>
@@ -162,16 +150,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addAccountName, 
+    addAccountName,
     addAccountPassword,
     deleteAccount,
-    completeAccount 
+    completeAccount
   }, dispatch);
-}
-
-function _isClickedEditButton () {
-
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountList);
