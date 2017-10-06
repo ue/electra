@@ -60,7 +60,7 @@ class AccountList extends React.Component {
   }
   
   handleDelete(id) {
-    this.props.s(id);
+    this.props.deleteAccount(id);
   }
 
   handleComplete(id) {
@@ -73,11 +73,13 @@ class AccountList extends React.Component {
     }
   }
 
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      console.log('do validate');
-    }
-  }
+  // handleKeyPress(e) {
+  //   if (e.key === 'Enter') {
+  //     console.log('do validate');
+  //   }
+  // }
+
+  //onKeyPress="{}" 
 
     renderList() {
       if (this.props.accountItems != null) {
@@ -85,8 +87,7 @@ class AccountList extends React.Component {
         return shownAccountList.map((item) => {
             return(
               <div key={item.id}>
-            
-                  <TextField hintText="Email" onKeyPress="{}" value={item.accountItem}/>
+                  <TextField hintText="Email" value={item.accountItem}/>
                   <TextField hintText="Password" value={item.password}/>
                   <IconButton onTouchTap={() => this.handleDelete(item.id)} >
                     <NavigationClose />
