@@ -38,9 +38,14 @@ class AccountList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { filter: ACCOUNT_FILTERS.SHOW_ALL }
+    this.state = { 
+      filter: ACCOUNT_FILTERS.SHOW_ALL,
+      disabled: false
+    }
 
+    //this.value = this.value.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    //this.state = { value: '' };
   }
   
   componentWillReceiveProps(nextProps) {
@@ -63,41 +68,45 @@ class AccountList extends React.Component {
     this.props.deleteAccount(id);
   }
 
-  handleComplete(id) {
-    this.props.completeAccount(id);
-  }
-
-  handleCompleteStyle(bool) {
-    if(bool){
-      return {color: "green", textDecoration: "line-through"};
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      console.log('do validate:  ' + e.target.value);
+      //const isDisable = true;
+      this.setState({disabled: !this.state.disabled});
     }
   }
 
-  // handleKeyPress(e) {
-  //   if (e.key === 'Enter') {
-  //     console.log('do validate');
-  //   }
-  // }
+  handleMouseLeave(val) {
+    console.log("yo!!! bthcez" + val.target.value)
+  }
 
-  //onKeyPress="{}" 
-
-    renderList() {
-      if (this.props.accountItems != null) {
-        let shownAccountList = this.props.accountItems.filter(this.state.filter);
-        return shownAccountList.map((item) => {
-            return(
-              <div key={item.id}>
-                  <TextField hintText="Email" value={item.accountItem}/>
-                  <TextField hintText="Password" value={item.password}/>
-                  <IconButton onTouchTap={() => this.handleDelete(item.id)} >
-                    <NavigationClose />
-                  </IconButton>
-                  <Divider />
-              </div>
-            );
-        });
-      }
+  renderList() {
+    if (this.props.accountItems != null) {
+      let shownAccountList = this.props.accountItems.filter(this.state.filter);
+      return shownAccountList.map((item) => {
+          return(
+            <div key={item.id}>
+                <TextField 
+                  hintText="Email" 
+                  onMouseOut={ this.handleMouseLeave.bind(this) } 
+                  onKeyPress={ this.handleKeyPress }                  
+                  value={item.accountItem}
+                  disabled = {(this.state.disabled)? "disabled" : ""}
+                />
+                <TextField 
+                  hintText="Password" 
+                  onKeyPress={ this.handleKeyPress }
+                  value={item.password}
+                />
+                <IconButton onTouchTap={() => this.handleDelete(item.id)} >
+                  <NavigationClose />
+                </IconButton>
+                <Divider />
+            </div>
+          );
+      });
     }
+  }
 
   render() {
     return (
