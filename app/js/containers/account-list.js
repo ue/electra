@@ -65,8 +65,9 @@ class AccountList extends React.Component {
     this.props.addAccountName({accountItem: e.target.value, id: uuid.v4()});
   }
 
+  // when click on lock button inputs gone be unlock
   handleClickedLock(e) {
-
+    this.setState({ inputIsDisable: false });
   }
   
   handleDelete(id) {
