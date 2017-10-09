@@ -40,9 +40,14 @@ class AccountList extends React.Component {
 
     this.state = { 
       filter: ACCOUNT_FILTERS.SHOW_ALL,
-      disabled: false
+      disabled: false,
+      inputIsDisable: false,
+      value: ''
     }
 
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     //this.value = this.value.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     //this.state = { value: '' };
@@ -69,16 +74,23 @@ class AccountList extends React.Component {
   }
 
   handleKeyPress(e) {
+    //const { inputTypeNumber } = this.props;
+    
     if (e.key === 'Enter') {
+     //this._getIsInputEnabled()
+    this.setState({ inputIsDisable: true });
+    
       console.log('do validate:  ' + e.target.value);
-      //const isDisable = true;
-      this.setState({disabled: !this.state.disabled});
     }
   }
 
   handleMouseLeave(val) {
     console.log("yo!!! bthcez" + val.target.value)
   }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+ }
 
   renderList() {
     if (this.props.accountItems != null) {
@@ -89,14 +101,16 @@ class AccountList extends React.Component {
                 <TextField 
                   hintText="Email" 
                   onMouseOut={ this.handleMouseLeave.bind(this) } 
-                  onKeyPress={ this.handleKeyPress }                  
+                  onKeyPress={ this.handleKeyPress }
                   value={item.accountItem}
-                  disabled = {(this.state.disabled)? "disabled" : ""}
+                  onChange={this.handleChange}
+                  disabled = { this.state.inputIsDisable }
                 />
                 <TextField 
                   hintText="Password" 
                   onKeyPress={ this.handleKeyPress }
                   value={item.password}
+                  disabled = { this.state.inputIsDisable }
                 />
                 <IconButton onTouchTap={() => this.handleDelete(item.id)} >
                   <NavigationClose />
