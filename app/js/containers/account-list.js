@@ -45,7 +45,6 @@ class AccountList extends React.Component {
       value: ''
     }
 
-
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     //this.value = this.value.bind(this);
@@ -58,17 +57,21 @@ class AccountList extends React.Component {
     localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
   }
 
-  // arti butonun tiklandiginda tetiklenen event e.target.value inputtaki degeri aliyor bos 
-  //gondermek gerekiyor 
   handleClick(e) {
     e.preventDefault();
     // Dispatch props
     this.props.addAccountName({accountItem: e.target.value, id: uuid.v4()});
   }
 
-  // when click on lock button inputs gone be unlock
+  /* when click on lock button inputs gone be unlock and than 
+   * if input already is disable it`s gonna be enable some thing like this
+  */
   handleClickedLock(e) {
-    this.setState({ inputIsDisable: false });
+    if(this.state.inputIsDisable === true) {
+      this.setState({ inputIsDisable: false });
+    } else {
+      this.setState({ inputIsDisable: true });    
+    }
   }
   
   handleDelete(id) {
@@ -157,12 +160,15 @@ class AccountList extends React.Component {
           }
           />
         </Tabs>
-
-        <FloatingActionButton className="addButton" onClick={this.handleClick.bind(this)}>
+        <FloatingActionButton mini="true" className="addButton" onClick={this.handleClick.bind(this)}>
           <i className="material-icons" style={{color: 'white'}}>add</i>
         </FloatingActionButton>
         <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
-          <i className="material-icons" style={{color: 'white'}}>lock</i>
+          {
+            this.state.inputIsDisable
+              ? <FontIcon className="material-icons">lock_outline</FontIcon>
+              : <FontIcon className="material-icons">lock_open</FontIcon>
+          }
         </FloatingActionButton>
         <Divider />
         <List style={styles}>
@@ -174,8 +180,6 @@ class AccountList extends React.Component {
     );
   }
 }
-
-//
 
 function mapStateToProps(state) {
   return {
