@@ -41,7 +41,7 @@ class AccountList extends React.Component {
     this.state = { 
       filter: ACCOUNT_FILTERS.SHOW_ALL,
       disabled: false,
-      inputIsDisable: false,
+      inputIsDisable: true,
       value: ''
     }
 
@@ -50,6 +50,7 @@ class AccountList extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     //this.value = this.value.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDoubleClick = this.handleDoubleClick.bind(this);
     //this.state = { value: '' };
   }
   
@@ -91,7 +92,16 @@ class AccountList extends React.Component {
 
   handleChange(e) {
     this.setState({ value: e.target.value });
- }
+  }
+
+  handleDoubleClick(event) {
+    if(this.state.inputIsDisable == true) {
+      this.setState({ inputIsDisable: false });
+      
+      console.log("handle double click");
+    }
+
+  }
 
   renderList() {
     if (this.props.accountItems != null) {
@@ -103,9 +113,10 @@ class AccountList extends React.Component {
                   hintText="Email" 
                   onMouseOut={ this.handleMouseLeave.bind(this) } 
                   onKeyPress={ this.handleKeyPress }
-                  value={item.accountItem}
-                  onChange={this.handleChange}
+                  value={ item.accountItem }
+                  onChange={ this.handleChange }
                   disabled = { this.state.inputIsDisable }
+                  onDoubleClick = { this.handleDoubleClick }
                 />
                 <TextField 
                   hintText="Password" 
