@@ -47,10 +47,12 @@ class AccountList extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    //this.value = this.value.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
-    //this.state = { value: '' };
+    /*
+    * this.value = this.value.bind(this);
+    * this.state = { value: '' };
+    */
   }
   
   componentWillReceiveProps(nextProps) {
@@ -67,7 +69,7 @@ class AccountList extends React.Component {
    * if input already is disable it`s gonna be enable some thing like this
   */
   handleClickedLock(e) {
-    if(this.state.inputIsDisable === true) {
+    if(this.state.inputIsDisable) {
       this.setState({ inputIsDisable: false });
     } else {
       this.setState({ inputIsDisable: true });    
@@ -79,12 +81,8 @@ class AccountList extends React.Component {
   }
 
   handleKeyPress(e) {
-    //const { inputTypeNumber } = this.props;
-    
     if (e.key === 'Enter') {
-     //this._getIsInputEnabled()
-    this.setState({ inputIsDisable: true });
-    
+      this.setState({ inputIsDisable: true });
       console.log('do validate:  ' + e.target.value);
     }
   }
@@ -98,16 +96,14 @@ class AccountList extends React.Component {
   }
 
   handleDoubleClick(event) {
-    if(this.state.inputIsDisable == true) {
+    if(this.state.inputIsDisable) {
       this.setState({ inputIsDisable: false });
-      
       console.log("handle double click");
     }
-
   }
 
   renderList() {
-    if (this.props.accountItems != null) {
+    if (this.props.accountItems) {
       let shownAccountList = this.props.accountItems.filter(this.state.filter);
       return shownAccountList.map((item) => {
           return(
