@@ -18,8 +18,11 @@ import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import FontIcon from 'material-ui/lib/font-icon';
 
-// Input field
+// Input Field
 import TextField from 'material-ui/lib/text-field';
+
+// React Edit Inline
+import InlineEdit from 'react-edit-inline';
 
 
 const styles = {
@@ -72,7 +75,7 @@ class AccountList extends React.Component {
     if(this.state.inputIsDisable) {
       this.setState({ inputIsDisable: false });
     } else {
-      this.setState({ inputIsDisable: true });    
+      this.setState({ inputIsDisable: true });
     }
   }
   
@@ -127,7 +130,29 @@ class AccountList extends React.Component {
                   <NavigationClose />
                 </IconButton>
                 <Divider />
+                <div>
+            <h2>{this.state.message}</h2>
+            <span>Edit me: </span>
+            <InlineEdit
+              validate={this.customValidateText}
+              activeClassName="editing"
+              text={this.state.value}
+              paramName="message"
+              change={this.dataChanged}
+              style={{
+                backgroundColor: 'yellow',
+                minWidth: 150,
+                display: 'inline-block',
+                margin: 0,
+                padding: 0,
+                fontSize: 15,
+                outline: 0,
+                border: 0
+              }}
+            />
+        </div>)
             </div>
+            
           );
       });
     }
