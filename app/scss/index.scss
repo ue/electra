@@ -36,8 +36,21 @@ button {
 
 .addButton{
   //mar:10px;
+  background-color: red;
+  color: green;
 }
 
 .lockButton {
   float: right;
+  background-color: black;
+  color: green;
+}
+.inlineEdit {
+  min-width: 150;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  //font-size: 0;
+  outline: 0;
+  border: 0;
 }

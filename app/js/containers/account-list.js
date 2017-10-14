@@ -109,49 +109,37 @@ class AccountList extends React.Component {
     if (this.props.accountItems) {
       let shownAccountList = this.props.accountItems.filter(this.state.filter);
       return shownAccountList.map((item) => {
-          return(
-            <div key={item.id}>
-                <TextField 
-                  hintText="Email" 
-                  onMouseOut={ this.handleMouseLeave.bind(this) } 
-                  onKeyPress={ this.handleKeyPress }
-                  value={ item.accountItem }
-                  onChange={ this.handleChange }
-                  disabled = { this.state.inputIsDisable }
-                  onDoubleClick = { this.handleDoubleClick }
-                />
-                <TextField 
-                  hintText="Password" 
-                  onKeyPress={ this.handleKeyPress }
-                  value={item.password}
-                  disabled = { this.state.inputIsDisable }
-                />
-                <IconButton onTouchTap={() => this.handleDelete(item.id)} >
-                  <NavigationClose />
-                </IconButton>
-                <Divider />
-                <div>
-            <h2>{this.state.message}</h2>
+        return(
+          <div key={item.id}>
+            <TextField 
+              hintText="Email" 
+              onMouseOut={ this.handleMouseLeave.bind(this) } 
+              onKeyPress={ this.handleKeyPress }
+              value={ item.accountItem }
+              onChange={ this.handleChange }
+              disabled = { this.state.inputIsDisable }
+              onDoubleClick = { this.handleDoubleClick }
+            />
+            <TextField 
+              hintText="Password" 
+              onKeyPress={ this.handleKeyPress }
+              value={item.password}
+              disabled = { this.state.inputIsDisable }
+            />
+            <IconButton onTouchTap={() => this.handleDelete(item.id)} >
+              <NavigationClose />
+            </IconButton>
+            <Divider />
             <span>Edit me: </span>
             <InlineEdit
               validate={this.customValidateText}
               activeClassName="editing"
-              text={this.state.value}
+              text={ item.accountItem }
               paramName="message"
               change={this.dataChanged}
-              style={{
-                backgroundColor: 'yellow',
-                minWidth: 150,
-                display: 'inline-block',
-                margin: 0,
-                padding: 0,
-                fontSize: 15,
-                outline: 0,
-                border: 0
-              }}
+              className="inlineEdit"
             />
-        </div>)
-            </div>
+        </div>
             
           );
       });
@@ -182,7 +170,7 @@ class AccountList extends React.Component {
           />
         </Tabs>
         <FloatingActionButton mini="true" className="addButton" onClick={this.handleClick.bind(this)}>
-          <i className="material-icons" style={{color: 'white'}}>add</i>
+          <i className="material-icons" style={{color: 'black'}}>add</i>
         </FloatingActionButton>
         <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
           {
