@@ -10,7 +10,7 @@ import {
   completeAccount
 } from '../actions/index';
 
-// node id
+// Id
 import uuid from 'node-uuid';
 
 // List
@@ -73,16 +73,14 @@ class AccountList extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
-    //localStorage.setItem('password', JSON.stringify(nextProps.accountItems));
-    
   }
 
-  handleClick(e) {
+  handlePlusClick(e) {
     e.preventDefault();
     // Dispatch props
     this.props.addAccount({
-      accountItem: "e.target.value",
-      accountPassword: "password",
+      accountItem: "Email",
+      accountPassword: "Password",
       id: uuid.v4()
     });
   }
@@ -144,8 +142,7 @@ class AccountList extends React.Component {
       return shownAccountList.map((item) => {
         return(
           <div key={item.id}>
-            <TextField 
-              hintText="Email" 
+            <TextField
               onMouseOut={ this.handleMouseLeave.bind(this) } 
               onKeyPress={ this.handleKeyPress }
               value={ item.accountItem }
@@ -153,8 +150,7 @@ class AccountList extends React.Component {
               disabled={ this.state.inputIsDisable }
               onDoubleClick = { this.handleDoubleClick }
             />
-            <TextField 
-              hintText="Password" 
+            <TextField
               onKeyPress={ this.handleKeyPress }
               value={item.accountPassword}
               disabled = { this.state.inputIsDisable }
@@ -163,7 +159,6 @@ class AccountList extends React.Component {
               <NavigationClose />
             </IconButton>
             <Divider />
-            <span>Edit me: </span>
             <InlineEdit
               validate={this.customValidateText}
               activeClassName="editing"
@@ -180,9 +175,8 @@ class AccountList extends React.Component {
               paramName={ item.id }
               change={ this.accountPasswordChanged.bind(this) }
               className="inlineEdit"
-          />
-        </div>
-            
+            />
+          </div>
           );
       });
     }
@@ -211,7 +205,7 @@ class AccountList extends React.Component {
           }
           />
         </Tabs>
-        <FloatingActionButton mini="true" className="addButton" onClick={this.handleClick.bind(this)}>
+        <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
           <i className="material-icons" style={{color: 'black'}}>add</i>
         </FloatingActionButton>
         <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
@@ -234,8 +228,7 @@ class AccountList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    accountItems: state.accountItems,
-    Password: state.password
+    accountItems: state.accountItems
   }
 }
 
