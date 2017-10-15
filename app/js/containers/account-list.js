@@ -1,7 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addAccount, accountItemUpdate, deleteAccount, completeAccount} from '../actions/index';
+
+import {
+  addAccount,
+  accountItemUpdate,
+  deleteAccount,
+  accountPasswordUpdate,
+  completeAccount
+} from '../actions/index';
+
+// node id
 import uuid from 'node-uuid';
 
 // List
@@ -54,6 +63,8 @@ class AccountList extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
     this.accountItemChanged = this.accountItemChanged.bind(this);
+    this.accountPasswordChanged = this.accountPasswordChanged.bind(this);
+    
     /*
     * this.value = this.value.bind(this);
     * this.state = { value: '' };
@@ -122,6 +133,10 @@ class AccountList extends React.Component {
     this.props.accountItemUpdate(item);
   }
 
+  accountPasswordChanged(item){
+    this.props.accountPasswordUpdate(item);
+  }
+
 
   renderList() {
     if (this.props.accountItems) {
@@ -163,7 +178,7 @@ class AccountList extends React.Component {
               activeClassName="editing"
               text={ item.accountPassword }
               paramName={ item.id }
-              change={ this.accountItemChanged.bind(this) }
+              change={ this.accountPasswordChanged.bind(this) }
               className="inlineEdit"
           />
         </div>
@@ -228,6 +243,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     addAccount,
     accountItemUpdate,
+    accountPasswordUpdate,
     deleteAccount,
     completeAccount
   }, dispatch);
