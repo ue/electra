@@ -5,12 +5,16 @@ const initialState = () => {
 }
 
 export default function accountItems(state = initialState(), action) {
+  console.log("log:accountitems action payload:");
+  console.log(action.payload);
     switch (action.type) {
-      case 'ACCOUNT_ADDED_NAME':
+      case 'ACCOUNT_ADDED':
         return state.concat(action.payload);
 
-      case 'ACCOUNT_ADDED_PASSWORD':
-        return state.concat(action.payload);
+      case 'ACCOUNT_UPDATE':
+        return state.filter(account =>
+          account.id !== Object.keys(action.payload)[0]
+        );
 
       case 'ACCOUNT_DELETED':
         return state.filter(account =>

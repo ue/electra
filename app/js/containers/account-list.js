@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addAccountName, addAccountPassword, deleteAccount, completeAccount} from '../actions/index';
+import {addAccount, accountUpdate, deleteAccount, completeAccount} from '../actions/index';
 import uuid from 'node-uuid';
 
 // List
@@ -45,13 +45,15 @@ class AccountList extends React.Component {
       filter: ACCOUNT_FILTERS.SHOW_ALL,
       disabled: false,
       inputIsDisable: true,
-      value: ''
+      accountItem: '',
+      accountPassword: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.dataChanged = this.dataChanged.bind(this);
     /*
     * this.value = this.value.bind(this);
     * this.state = { value: '' };
@@ -60,12 +62,18 @@ class AccountList extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
+    //localStorage.setItem('password', JSON.stringify(nextProps.accountItems));
+    
   }
 
   handleClick(e) {
     e.preventDefault();
     // Dispatch props
-    this.props.addAccountName({accountItem: e.target.value, id: uuid.v4()});
+    this.props.addAccount({
+      accountItem: "e.target.value",
+      accountPassword: "password",
+      id: uuid.v4()
+    });
   }
 
   /* when click on lock button inputs gone be unlock and than 
@@ -80,6 +88,7 @@ class AccountList extends React.Component {
   }
   
   handleDelete(id) {
+    //consol.log(id);
     this.props.deleteAccount(id);
   }
 
@@ -105,6 +114,25 @@ class AccountList extends React.Component {
     }
   }
 
+  customValidateText(text) {
+    return (text.length > 0 && text.length < 64);
+  }
+
+  dataChanged(item){
+    console.log("item changed");
+    console.log(item);
+    // Id for data
+    var id = Object.keys(item)[0];
+    this.props.accountUpdate(item);
+
+    if(item.hasOwnProperty('accountItem')){
+      console.log(item);
+    } else{
+      console.log("amk");
+    }
+  }
+
+
   renderList() {
     if (this.props.accountItems) {
       let shownAccountList = this.props.accountItems.filter(this.state.filter);
@@ -117,13 +145,13 @@ class AccountList extends React.Component {
               onKeyPress={ this.handleKeyPress }
               value={ item.accountItem }
               onChange={ this.handleChange }
-              disabled = { this.state.inputIsDisable }
+              disabled={ this.state.inputIsDisable }
               onDoubleClick = { this.handleDoubleClick }
             />
             <TextField 
               hintText="Password" 
               onKeyPress={ this.handleKeyPress }
-              value={item.password}
+              value={item.accountPassword}
               disabled = { this.state.inputIsDisable }
             />
             <IconButton onTouchTap={() => this.handleDelete(item.id)} >
@@ -135,10 +163,19 @@ class AccountList extends React.Component {
               validate={this.customValidateText}
               activeClassName="editing"
               text={ item.accountItem }
-              paramName="message"
-              change={this.dataChanged}
+              paramName={ item.id }
+              change={ this.dataChanged.bind(this) }
               className="inlineEdit"
             />
+            <br/>
+            <InlineEdit
+              validate={this.customValidateText}
+              activeClassName="editing"
+              text={ item.accountItem }
+              paramName={ item.id }
+              change={ this.dataChanged.bind(this) }
+              className="inlineEdit"
+          />
         </div>
             
           );
@@ -199,8 +236,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addAccountName,
-    addAccountPassword,
+    addAccount,
+    accountUpdate,
     deleteAccount,
     completeAccount
   }, dispatch);

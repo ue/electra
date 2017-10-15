@@ -1,14 +1,14 @@
-export function addAccountName(account) {
+export function addAccount(account) {
   return {
-    type: 'ACCOUNT_ADDED_NAME',
+    type: 'ACCOUNT_ADDED',
     payload: account
   };
 }
 
-export function addAccountPassword(password) {
+export function accountUpdate(id) {
   return {
-    type: 'ACCOUNT_ADDED_PASSWORD',
-    payload: password
+    type: 'ACCOUNT_UPDATE',
+    payload: id
   };
 }
 
