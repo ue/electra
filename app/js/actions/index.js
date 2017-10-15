@@ -5,9 +5,16 @@ export function addAccount(account) {
   };
 }
 
-export function accountUpdate(id) {
+export function accountItemUpdate(id) {
   return {
-    type: 'ACCOUNT_UPDATE',
+    type: 'ACCOUNT_ITEM_UPDATE',
+    payload: id
+  };
+}
+
+export function accountPasswordUpdate(id) {
+  return {
+    type: 'ACCOUNT_PASSWORD_UPDATE',
     payload: id
   };
 }

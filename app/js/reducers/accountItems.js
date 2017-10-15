@@ -5,16 +5,27 @@ const initialState = () => {
 }
 
 export default function accountItems(state = initialState(), action) {
-  console.log("log:accountitems action payload:");
-  console.log(action.payload);
+  console.log("Logger");
+  console.log(action);
     switch (action.type) {
       case 'ACCOUNT_ADDED':
         return state.concat(action.payload);
 
-      case 'ACCOUNT_UPDATE':
-        return state.filter(account =>
-          account.id !== Object.keys(action.payload)[0]
-        );
+      case 'ACCOUNT_ITEM_UPDATE':
+      return state.map((account) => {
+          if (account.id === Object.keys(action.payload)[0]) {
+              account.accountItem = action.payload[account.id];
+          }
+          return account;
+      });
+
+      case 'ACCOUNT_PASSWORD_UPDATE':
+      return state.map((account) => {
+          if (account.id === Object.keys(action.payload)[0]) {
+              account.accountPassword = action.payload[account.id];
+          }
+          return account;
+      });
 
       case 'ACCOUNT_DELETED':
         return state.filter(account =>

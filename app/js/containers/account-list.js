@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addAccount, accountUpdate, deleteAccount, completeAccount} from '../actions/index';
+import {addAccount, accountItemUpdate, deleteAccount, completeAccount} from '../actions/index';
 import uuid from 'node-uuid';
 
 // List
@@ -53,7 +53,7 @@ class AccountList extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
-    this.dataChanged = this.dataChanged.bind(this);
+    this.accountItemChanged = this.accountItemChanged.bind(this);
     /*
     * this.value = this.value.bind(this);
     * this.state = { value: '' };
@@ -118,18 +118,8 @@ class AccountList extends React.Component {
     return (text.length > 0 && text.length < 64);
   }
 
-  dataChanged(item){
-    console.log("item changed");
-    console.log(item);
-    // Id for data
-    var id = Object.keys(item)[0];
-    this.props.accountUpdate(item);
-
-    if(item.hasOwnProperty('accountItem')){
-      console.log(item);
-    } else{
-      console.log("amk");
-    }
+  accountItemChanged(item){
+    this.props.accountItemUpdate(item);
   }
 
 
@@ -164,16 +154,16 @@ class AccountList extends React.Component {
               activeClassName="editing"
               text={ item.accountItem }
               paramName={ item.id }
-              change={ this.dataChanged.bind(this) }
+              change={ this.accountItemChanged.bind(this) }
               className="inlineEdit"
             />
             <br/>
             <InlineEdit
               validate={this.customValidateText}
               activeClassName="editing"
-              text={ item.accountItem }
+              text={ item.accountPassword }
               paramName={ item.id }
-              change={ this.dataChanged.bind(this) }
+              change={ this.accountItemChanged.bind(this) }
               className="inlineEdit"
           />
         </div>
@@ -237,7 +227,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     addAccount,
-    accountUpdate,
+    accountItemUpdate,
     deleteAccount,
     completeAccount
   }, dispatch);
