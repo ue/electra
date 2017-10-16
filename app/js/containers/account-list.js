@@ -53,22 +53,13 @@ class AccountList extends React.Component {
     this.state = { 
       filter: ACCOUNT_FILTERS.SHOW_ALL,
       disabled: false,
-      inputIsDisable: true,
       accountItem: '',
       accountPassword: ''
     }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleDoubleClick = this.handleDoubleClick.bind(this);
     this.accountItemChanged = this.accountItemChanged.bind(this);
     this.accountPasswordChanged = this.accountPasswordChanged.bind(this);
-    
-    /*
-    * this.value = this.value.bind(this);
-    * this.state = { value: '' };
-    */
   }
   
   componentWillReceiveProps(nextProps) {
@@ -84,43 +75,9 @@ class AccountList extends React.Component {
       id: uuid.v4()
     });
   }
-
-  /* when click on lock button inputs gone be unlock and than 
-   * if input already is disable it`s gonna be enable some thing like this
-  */
-  handleClickedLock(e) {
-    if(this.state.inputIsDisable) {
-      this.setState({ inputIsDisable: false });
-    } else {
-      this.setState({ inputIsDisable: true });
-    }
-  }
   
   handleDelete(id) {
-    //consol.log(id);
     this.props.deleteAccount(id);
-  }
-
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.setState({ inputIsDisable: true });
-      console.log('do validate:  ' + e.target.value);
-    }
-  }
-
-  handleMouseLeave(val) {
-    console.log("yo!!! bthcez" + val.target.value)
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  handleDoubleClick(event) {
-    if(this.state.inputIsDisable) {
-      this.setState({ inputIsDisable: false });
-      console.log("handle double click");
-    }
   }
 
   customValidateText(text) {
@@ -133,6 +90,7 @@ class AccountList extends React.Component {
 
   accountPasswordChanged(item){
     this.props.accountPasswordUpdate(item);
+    this.props.completeAccount(item);
   }
 
 
@@ -142,23 +100,10 @@ class AccountList extends React.Component {
       return shownAccountList.map((item) => {
         return(
           <div key={item.id}>
-            <TextField
-              onMouseOut={ this.handleMouseLeave.bind(this) } 
-              onKeyPress={ this.handleKeyPress }
-              value={ item.accountItem }
-              onChange={ this.handleChange }
-              disabled={ this.state.inputIsDisable }
-              onDoubleClick = { this.handleDoubleClick }
-            />
-            <TextField
-              onKeyPress={ this.handleKeyPress }
-              value={item.accountPassword}
-              disabled = { this.state.inputIsDisable }
-            />
+            <Divider />
             <IconButton onTouchTap={() => this.handleDelete(item.id)} >
               <NavigationClose />
             </IconButton>
-            <Divider />
             <InlineEdit
               validate={this.customValidateText}
               activeClassName="editing"
@@ -207,13 +152,6 @@ class AccountList extends React.Component {
         </Tabs>
         <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
           <i className="material-icons" style={{color: 'black'}}>add</i>
-        </FloatingActionButton>
-        <FloatingActionButton mini="true" className="lockButton" onClick={this.handleClickedLock.bind(this)}>
-          {
-            this.state.inputIsDisable
-              ? <FontIcon className="material-icons">lock_outline</FontIcon>
-              : <FontIcon className="material-icons">lock_open</FontIcon>
-          }
         </FloatingActionButton>
         <Divider />
         <List style={styles}>
