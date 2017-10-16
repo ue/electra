@@ -46,27 +46,30 @@ button {
   color: green;
 }
 .inlineEdit {
-  padding: 0;
   position: relative;
   width: 100%;
   height: 100%;
   border: none;
   outline: none;
   background-color: transparent;
-  color: rgba(0,0,0,0.3);
-  font-size: 30px;
+  color: rgba(0, 0, 0, 0.33);
+  font-size: 18px;
+  text-align: center;
+  
 }
 
 .editing{
-  // here is when active edit inline
-  // then active css ..
-  padding: 20;
   position: relative;
-  width: 100%;
-  height: 100%;
   border: none;
   outline: none;
   background-color: transparent;
-  color: rgb(0, 0, 0);
-  font-size: 30px;
+  color: rgba(235, 13, 13, 0.56);
+  font-size: 18px;
+  text-align: center;
+  
 }
+
+// .itemStyle {
+//   padding-top: 10px;
+//   text-align: left;
+// }

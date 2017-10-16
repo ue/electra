@@ -99,28 +99,50 @@ class AccountList extends React.Component {
       let shownAccountList = this.props.accountItems.filter(this.state.filter);
       return shownAccountList.map((item) => {
         return(
-          <div key={item.id}>
+          <div className="itemStyle" key={item.id}>
+            <List>
+            <ListItem
+              leftIcon={
+                <FontIcon className="material-icons">mail_outline</FontIcon>
+              }
+              rightIcon={
+                <FontIcon className="material-icons">content_copy</FontIcon>                
+              }
+              primaryText={
+                <InlineEdit
+                  validate={this.customValidateText}
+                  activeClassName="editing"
+                  text={ item.accountItem }
+                  paramName={ item.id }
+                  change={ this.accountItemChanged.bind(this) }
+                  className="inlineEdit"
+                />
+              }
+            />
+            <ListItem
+              leftIcon={
+                <FontIcon className="material-icons">lock_open</FontIcon>              
+              }
+              rightIcon={
+                <FontIcon className="material-icons">content_copy</FontIcon>
+              }
+              primaryText={
+                <InlineEdit
+                  validate={this.customValidateText}
+                  activeClassName="editing"
+                  text={ item.accountPassword }
+                  paramName={ item.id }
+                  change={ this.accountPasswordChanged.bind(this) }
+                  className="inlineEdit"
+                />
+              }
+            />
+          </List>
             <Divider />
-            <IconButton onTouchTap={() => this.handleDelete(item.id)} >
+            {/* <IconButton onTouchTap={() => this.handleDelete(item.id)} >
               <NavigationClose />
-            </IconButton>
-            <InlineEdit
-              validate={this.customValidateText}
-              activeClassName="editing"
-              text={ item.accountItem }
-              paramName={ item.id }
-              change={ this.accountItemChanged.bind(this) }
-              className="inlineEdit"
-            />
-            <br/>
-            <InlineEdit
-              validate={this.customValidateText}
-              activeClassName="editing"
-              text={ item.accountPassword }
-              paramName={ item.id }
-              change={ this.accountPasswordChanged.bind(this) }
-              className="inlineEdit"
-            />
+            </IconButton> */}
+         
           </div>
           );
       });
