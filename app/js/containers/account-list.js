@@ -33,6 +33,9 @@ import TextField from 'material-ui/lib/text-field';
 // React Edit Inline
 import InlineEdit from 'react-edit-inline';
 
+// Copy To Clipboard
+import Clipboard from 'react-clipboard.js';
+
 
 const styles = {
     height: 500,
@@ -106,7 +109,9 @@ class AccountList extends React.Component {
                 <FontIcon className="material-icons">mail_outline</FontIcon>
               }
               rightIcon={
-                <FontIcon className="material-icons">content_copy</FontIcon>                
+                <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
+                  <FontIcon className="material-icons" >content_copy</FontIcon>
+                </Clipboard>
               }
               primaryText={
                 <InlineEdit
