@@ -110,7 +110,7 @@ class AccountList extends React.Component {
               }
               rightIcon={
                 <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
-                  <FontIcon className="material-icons" >content_copy</FontIcon>
+                  <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
                 </Clipboard>
               }
               primaryText={
@@ -129,7 +129,9 @@ class AccountList extends React.Component {
                 <FontIcon className="material-icons">lock_open</FontIcon>              
               }
               rightIcon={
-                <FontIcon className="material-icons">content_copy</FontIcon>
+                <Clipboard className="clipboard-btn" data-clipboard-text={item.accountPassword}>
+                  <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
+                </Clipboard>
               }
               primaryText={
                 <InlineEdit

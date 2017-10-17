@@ -35,7 +35,6 @@ button {
 }
 
 .addButton{
-  //mar:10px;
   background-color: red;
   color: green;
 }
@@ -55,7 +54,7 @@ button {
   color: rgba(0, 0, 0, 0.33);
   font-size: 18px;
   text-align: center;
-  
+  margin-right: 15px;
 }
 
 .editing{
@@ -63,19 +62,28 @@ button {
   border: none;
   outline: none;
   background-color: transparent;
-  color: rgba(235, 13, 13, 0.56);
+  color: #ff4081;
   font-size: 18px;
   text-align: center;
-  
+  margin-right: 15px;
 }
-
-// .itemStyle {
-//   padding-top: 10px;
-//   text-align: left;
-// }
 
 .clipboard-btn{
   background: none;
   border: none;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+}
+
+.clipboard-btn:focus{
+  border: none !important;
+  background: none;
+  border: none;
+  color:black;
+}
+
+.clipboard-icon{
+  color:#ff4081 !important;
 }
