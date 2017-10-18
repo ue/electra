@@ -130,7 +130,7 @@ class AccountList extends React.Component {
               }
               rightIcon={
                 <Clipboard className="clipboard-btn" data-clipboard-text={item.accountPassword}>
-                  <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
+                  <FontIcon className="material-icons clipboard-icon">content_copy</FontIcon>
                 </Clipboard>
               }
               primaryText={
@@ -144,6 +144,14 @@ class AccountList extends React.Component {
                 />
               }
             />
+            <div>
+            <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
+              <FontIcon className="material-icons">delete</FontIcon>
+            </IconButton> 
+            <IconButton className="" >
+              <FontIcon className="material-icons">favorite</FontIcon>
+            </IconButton> 
+            </div>
           </List>
             <Divider />
             {/* <IconButton onTouchTap={() => this.handleDelete(item.id)} >
@@ -161,19 +169,19 @@ class AccountList extends React.Component {
       <div>
         <Tabs>
           <Tab
-            icon={<FontIcon className="material-icons">assignment</FontIcon>}
+            icon={<FontIcon className="material-icons">home</FontIcon>}
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});}
             }
           />
           <Tab
-            icon={<FontIcon className="material-icons">alarm</FontIcon>}
+            icon={<FontIcon className="material-icons">favorite</FontIcon>}
             onActive={() => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});}
           }
           />
           <Tab
-            icon={<FontIcon className="material-icons">delete</FontIcon>}
+            icon={<FontIcon className="material-icons">settings</FontIcon>}
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_COMPLETED});} 
           }
