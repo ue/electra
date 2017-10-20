@@ -32,10 +32,10 @@ export default function accountItems(state = initialState(), action) {
             account.id !== action.payload
         );
 
-      case 'ACCOUNT_COMPLETED':
+      case 'ADD_TO_FAVORITES':
         return state.map((account) => {
             if (account.id === action.payload) {
-                account.completed = !account.completed;
+                account.fav = true;
             }
             return account;
         });

@@ -6,6 +6,7 @@ import {
   addAccount,
   accountItemUpdate,
   deleteAccount,
+  addToFavorites,
   accountPasswordUpdate,
   completeAccount
 } from '../actions/index';
@@ -44,8 +45,8 @@ const styles = {
 
 const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
-  SHOW_ACTIVE: account => !account.completed,
-  SHOW_COMPLETED: account => account.completed
+  SHOW_FAVORITES: account => !account.fav,
+  SHOW_ACTIVE: account => account.fav
 }
 
 class AccountList extends React.Component {
@@ -61,6 +62,7 @@ class AccountList extends React.Component {
     }
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleFavorites = this.handleFavorites.bind(this);
     this.accountItemChanged = this.accountItemChanged.bind(this);
     this.accountPasswordChanged = this.accountPasswordChanged.bind(this);
   }
@@ -73,14 +75,18 @@ class AccountList extends React.Component {
     e.preventDefault();
     // Dispatch props
     this.props.addAccount({
-      accountItem: "Email",
-      accountPassword: "Password",
+      accountItem: "Clik here and add your Account",
+      accountPassword: "Also Password",
       id: uuid.v4()
     });
   }
   
   handleDelete(id) {
     this.props.deleteAccount(id);
+  }
+  
+  handleFavorites(id) {
+    this.props.addToFavorites(id);
   }
 
   customValidateText(text) {
@@ -93,7 +99,6 @@ class AccountList extends React.Component {
 
   accountPasswordChanged(item){
     this.props.accountPasswordUpdate(item);
-    this.props.completeAccount(item);
   }
 
 
@@ -159,18 +164,13 @@ class AccountList extends React.Component {
                 <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
                   <FontIcon className="material-icons">delete</FontIcon>
                 </IconButton> 
-                <IconButton className="" >
+                <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
                   <FontIcon className="material-icons">favorite</FontIcon>
-                </IconButton> 
+                </IconButton>
               </div>
           </List>
             <Divider />
-            {/* <IconButton onTouchTap={() => this.handleDelete(item.id)} >
-              <NavigationClose />
-            </IconButton> */}
-         
           </div>
-          
           );
       });
     }
@@ -189,17 +189,16 @@ class AccountList extends React.Component {
           <Tab
             icon={<FontIcon className="material-icons">favorite</FontIcon>}
             onActive={() => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});}
-          }
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_FAVORITES});}
+            }
           />
           <Tab
             icon={<FontIcon className="material-icons">settings</FontIcon>}
             onActive={ () => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_COMPLETED});} 
-          }
+              this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});} 
+            }
           />
         </Tabs>
-        
         <Divider />
         <List style={styles}>
           {
@@ -207,7 +206,7 @@ class AccountList extends React.Component {
           }
         </List>
         <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
-          <i className="material-icons" style={{color: 'black'}}>add</i>
+          <i className="material-icons">add</i>
         </FloatingActionButton>
       </div>
     );
@@ -226,6 +225,7 @@ function mapDispatchToProps(dispatch) {
     accountItemUpdate,
     accountPasswordUpdate,
     deleteAccount,
+    addToFavorites,
     completeAccount
   }, dispatch);
 }

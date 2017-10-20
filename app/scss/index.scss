@@ -10,7 +10,7 @@ div {
 }
 
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -34,7 +34,7 @@ button {
   background-color: #eee;
 }
 
-.addButton{
+.addButton {
   background-color: red;
   color: green;
 }
@@ -59,7 +59,7 @@ button {
   cursor: pointer;
 }
 
-.editing{
+.editing {
   position: relative;
   border: none;
   outline: none;
@@ -74,28 +74,28 @@ button {
   height: 100%;
 }
 
-.clipboard-btn{
+.clipboard-btn {
   cursor: pointer;
   background: none;
   border: none;
   height: 30px !important;
   width: 35px !important;
   right: 0px !important;
-  
-  .clipboard-icon{
-    color:#ff4081 !important;
+
+  .clipboard-icon {
+    color: #ff4081 !important;
   }
 }
 
-.clipboard-btn:focus{
+.clipboard-btn:focus {
   border: none !important;
   background: none;
   border: none;
   outline: 0;
 }
 
-.clipboard-icon{
-  color:#ff4081 !important;
+.clipboard-icon {
+  color: #ff4081 !important;
 }
 
 .listItem {

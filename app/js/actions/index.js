@@ -26,9 +26,9 @@ export function deleteAccount(id) {
   }
 }
 
-export function completeAccount(id) {
+export function addToFavorites(id) {
   return { 
-    type: 'ACCOUNT_COMPLETED', 
+    type: 'ADD_TO_FAVORITES', 
     payload: id 
   }
 }
