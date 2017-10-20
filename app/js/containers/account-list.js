@@ -45,7 +45,7 @@ const styles = {
 
 const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
-  SHOW_FAVORITES: account => !account.fav,
+  SHOW_FAVORITES: account => account.fav,
   SHOW_ACTIVE: account => account.fav
 }
 
@@ -165,7 +165,12 @@ class AccountList extends React.Component {
                   <FontIcon className="material-icons">delete</FontIcon>
                 </IconButton> 
                 <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
-                  <FontIcon className="material-icons">favorite</FontIcon>
+                { item.fav ?
+                  <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
+                  :
+                  <FontIcon className="material-icons favorite-icon">favorite_border</FontIcon>
+                }
+                  
                 </IconButton>
               </div>
           </List>

@@ -35,7 +35,7 @@ export default function accountItems(state = initialState(), action) {
       case 'ADD_TO_FAVORITES':
         return state.map((account) => {
             if (account.id === action.payload) {
-                account.fav = true;
+                account.fav = !account.fav;
             }
             return account;
         });
