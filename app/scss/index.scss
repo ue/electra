@@ -53,7 +53,7 @@ button {
   outline: none;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.33);
-  font-size: 185x;
+  font-size: 15px;
   text-align: center;
   margin-right: 15px;
   cursor: pointer;
@@ -75,12 +75,16 @@ button {
 }
 
 .clipboard-btn{
+  cursor: pointer;
   background: none;
   border: none;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  padding: 2px;
+  height: 30px !important;
+  width: 35px !important;
+  right: 0px !important;
+  
+  .clipboard-icon{
+    color:#ff4081 !important;
+  }
 }
 
 .clipboard-btn:focus{
@@ -100,4 +104,10 @@ button {
 
 .listItem:hover {
   background: rgba(0, 188, 212, 0.15) !important;
+}
+
+.warningForEmpty {
+  color: rgba(0, 0, 0, 0.29);
+  margin-top: 220px;
+  font-size: 24px;
 }

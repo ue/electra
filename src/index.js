@@ -85,9 +85,7 @@ ipc.on('export-to-pdf', function () {
 });
 
 ipc.on('go-to-github', function () {
-
   electron.shell.openExternal('https://github.com/ue/electra');
-
 });
 
 // This method will be called when Electron has finished

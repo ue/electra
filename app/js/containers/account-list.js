@@ -100,6 +100,15 @@ class AccountList extends React.Component {
   renderList() {
     if (this.props.accountItems) {
       let shownAccountList = this.props.accountItems.filter(this.state.filter);
+
+      if (shownAccountList.length <= 0) {
+        return (
+          <div className="warningForEmpty">
+            oops! there is nothing :(
+          </div> 
+        );
+      }
+
       return shownAccountList.map((item) => {
         return(
           <div className="itemStyle" key={item.id}>
