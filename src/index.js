@@ -1,5 +1,5 @@
 'use strict'
-
+// ELECTRON SIDE 
 const electron = require('electron');
 // Interprocess communication so that React can communicate with Electron.
 const ipc = require('ipc');
@@ -83,6 +83,13 @@ ipc.on('export-to-pdf', function () {
   });
 
 });
+
+ipc.on('go-to-github', function () {
+
+  electron.shell.openExternal('https://github.com/ue/electra');
+
+});
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', createWindow)

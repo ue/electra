@@ -1483,6 +1483,12 @@ electron-download@^2.0.0:
     path-exists "^1.0.0"
     rc "^1.1.2"
 
+electron-open-link-in-browser@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/electron-open-link-in-browser/-/electron-open-link-in-browser-1.0.2.tgz#66e5d584fdf10ce7d5716bbe5d12e41b3568f1a3"
+  dependencies:
+    is-electron-renderer "^2.0.0"
+
 electron-prebuilt@^0.36.8:
   version "0.36.12"
   resolved "https://registry.yarnpkg.com/electron-prebuilt/-/electron-prebuilt-0.36.12.tgz#0fab172d40a234a5f029fb14004cf32160cecf9b"
@@ -2783,6 +2789,10 @@ is-builtin-module@^1.0.0:
 is-dotfile@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
+
+is-electron-renderer@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/is-electron-renderer/-/is-electron-renderer-2.0.1.tgz#a469d056f975697c58c98c6023eb0aa79af895a2"
 
 is-equal-shallow@^0.1.3:
   version "0.1.3"
