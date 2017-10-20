@@ -104,54 +104,56 @@ class AccountList extends React.Component {
         return(
           <div className="itemStyle" key={item.id}>
             <List>
-            <ListItem
-              leftIcon={
-                <FontIcon className="material-icons">mail_outline</FontIcon>
-              }
-              rightIcon={
-                <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
-                  <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
-                </Clipboard>
-              }
-              primaryText={
-                <InlineEdit
-                  validate={this.customValidateText}
-                  activeClassName="editing"
-                  text={ item.accountItem }
-                  paramName={ item.id }
-                  change={ this.accountItemChanged.bind(this) }
-                  className="inlineEdit"
-                />
-              }
-            />
-            <ListItem
-              leftIcon={
-                <FontIcon className="material-icons">lock_open</FontIcon>              
-              }
-              rightIcon={
-                <Clipboard className="clipboard-btn" data-clipboard-text={item.accountPassword}>
-                  <FontIcon className="material-icons clipboard-icon">content_copy</FontIcon>
-                </Clipboard>
-              }
-              primaryText={
-                <InlineEdit
-                  validate={this.customValidateText}
-                  activeClassName="editing"
-                  text={ item.accountPassword }
-                  paramName={ item.id }
-                  change={ this.accountPasswordChanged.bind(this) }
-                  className="inlineEdit"
-                />
-              }
-            />
-            <div>
-            <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
-              <FontIcon className="material-icons">delete</FontIcon>
-            </IconButton> 
-            <IconButton className="" >
-              <FontIcon className="material-icons">favorite</FontIcon>
-            </IconButton> 
-            </div>
+              <ListItem
+                className="listItem"
+                leftIcon={
+                  <FontIcon className="material-icons">mail_outline</FontIcon>
+                }
+                rightIcon={
+                  <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
+                    <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
+                  </Clipboard>
+                }
+                primaryText={
+                  <InlineEdit
+                    validate={this.customValidateText}
+                    activeClassName="editing"
+                    text={ item.accountItem }
+                    paramName={ item.id }
+                    change={ this.accountItemChanged.bind(this) }
+                    className="inlineEdit"
+                  />
+                }
+              />
+              <ListItem
+                className="listItem"              
+                leftIcon={
+                  <FontIcon className="material-icons">lock_open</FontIcon>              
+                }
+                rightIcon={
+                  <Clipboard className="clipboard-btn" data-clipboard-text={item.accountPassword}>
+                    <FontIcon className="material-icons clipboard-icon">content_copy</FontIcon>
+                  </Clipboard>
+                }
+                primaryText={
+                  <InlineEdit
+                    validate={this.customValidateText}
+                    activeClassName="editing"
+                    text={ item.accountPassword }
+                    paramName={ item.id }
+                    change={ this.accountPasswordChanged.bind(this) }
+                    className="inlineEdit"
+                  />
+                }
+              />
+              <div>
+                <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
+                  <FontIcon className="material-icons">delete</FontIcon>
+                </IconButton> 
+                <IconButton className="" >
+                  <FontIcon className="material-icons">favorite</FontIcon>
+                </IconButton> 
+              </div>
           </List>
             <Divider />
             {/* <IconButton onTouchTap={() => this.handleDelete(item.id)} >
@@ -159,6 +161,7 @@ class AccountList extends React.Component {
             </IconButton> */}
          
           </div>
+          
           );
       });
     }
@@ -187,15 +190,16 @@ class AccountList extends React.Component {
           }
           />
         </Tabs>
-        <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
-          <i className="material-icons" style={{color: 'black'}}>add</i>
-        </FloatingActionButton>
+  
         <Divider />
         <List style={styles}>
           {
             this.renderList()
           }
         </List>
+        <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
+          <i className="material-icons" style={{color: 'black'}}>add</i>
+        </FloatingActionButton>
       </div>
     );
   }
