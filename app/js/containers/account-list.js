@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -37,10 +38,12 @@ import InlineEdit from 'react-edit-inline';
 // Copy To Clipboard
 import Clipboard from 'react-clipboard.js';
 
+import Settings from './settings';
 
 const styles = {
     height: 500,
-    overflowY: 'auto'
+    overflowY: 'auto',
+    textAlign: 'center'
 }
 
 const ACCOUNT_FILTERS = {
@@ -121,7 +124,7 @@ class AccountList extends React.Component {
               <ListItem
                 className="listItem"
                 leftIcon={
-                  <FontIcon className="material-icons">mail_outline</FontIcon>
+                  <FontIcon className="material-icons quick-icon">mail_outline</FontIcon>
                 }
                 rightIcon={
                   <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
@@ -142,7 +145,7 @@ class AccountList extends React.Component {
               <ListItem
                 className="listItem"              
                 leftIcon={
-                  <FontIcon className="material-icons">lock_open</FontIcon>              
+                  <FontIcon className="material-icons quick-icons">lock_open</FontIcon>              
                 }
                 rightIcon={
                   <Clipboard className="clipboard-btn" data-clipboard-text={item.accountPassword}>
@@ -190,29 +193,36 @@ class AccountList extends React.Component {
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});}
             }
-          />
+          >
+            <List style={styles}>
+              {
+                this.renderList()
+              }
+            </List>
+          </Tab>
+
           <Tab
             icon={<FontIcon className="material-icons">favorite</FontIcon>}
             onActive={() => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_FAVORITES});}
             }
-          />
-          <Tab
-            icon={<FontIcon className="material-icons">settings</FontIcon>}
-            onActive={ () => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_ACTIVE});} 
-            }
-          />
+          >
+            <List style={styles}>
+              {
+                this.renderList()
+              }
+            </List>
+          </Tab>
+          
+          <Tab icon={<FontIcon className="material-icons">settings</FontIcon>}>
+              { <Settings/> }
+          </Tab>
         </Tabs>
-        <Divider />
-        <List style={styles}>
-          {
-            this.renderList()
-          }
-        </List>
-        <FloatingActionButton mini="true" className="addButton" onClick={this.handlePlusClick.bind(this)}>
+        
+        <FloatingActionButton mini={true} className="addButton" onClick={this.handlePlusClick.bind(this)}>
           <i className="material-icons">add</i>
         </FloatingActionButton>
+        
       </div>
     );
   }
