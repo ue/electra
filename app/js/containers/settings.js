@@ -9,20 +9,28 @@ const styles = {
 class Settings extends React.Component {
   constructor (props) {
     super(props);
-    //default settings
+
     this.state = { 
-      darkTheme: false,
-      isToggled: localStorage.getItem('darkTheme')
+      //default settings
+      darkTheme: false
     };
 
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     
   }
 
-  handleDelete(event) {
-    localStorage.setItem('darkTheme', !this.state.darkTheme);
-    this.setState({darkTheme: !this.state.darkTheme});
+  componentWillMount() {
+    if(!localStorage.getItem('darkTheme')){
+      localStorage.setItem('darkTheme', false);
+    }
   }
+
+  handleToggle(event) {
+    localStorage.setItem('darkTheme', this.state.darkTheme);
+    this.setState({darkTheme: !this.state.darkTheme}, () => {
+      this.props.updateTheme(this.state.darkTheme);
+    });
+   }
   
   render() {
     return (
@@ -30,9 +38,9 @@ class Settings extends React.Component {
        <Toggle
         label="Dark Theme"
         onToggle={
-          this.handleDelete
+          this.handleToggle
         }
-        defaultToggled={ this.state.isToggled }
+        defaultToggled={ true }
       />
       </div>
     );
@@ -40,4 +48,3 @@ class Settings extends React.Component {
 }
 
 export default Settings;
-
