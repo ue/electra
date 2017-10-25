@@ -47,7 +47,6 @@ let createWindow = () => {
   var contextMenu = Menu.buildFromTemplate([
     { label: 'open', click: () => {mainWindow.restore(); mainWindow.show();} },
     { label: 'minimize', click: () => {mainWindow.minimize();} },
-    { label: 'minimize to system tray', click: () => {mainWindow.hide()} },
     { label: 'close', click: 
       function handleClicked () {
         app.quit();
@@ -71,14 +70,10 @@ ipc.on('minimize', function () {
     mainWindow.minimize();
 });
 
-ipc.on('minimize-to-tray', function () {
-    mainWindow.hide();
-});
-
 ipc.on('export-to-pdf', function () {
 
   let pdfSavePath = dialog.showSaveDialog({ 
-    title: 'Save PDF File', 
+    title: 'Save as PDF File',
     filters: [{ name: 'PDF Files', extensions: ['pdf'] }]
   });
 

@@ -164,9 +164,6 @@ class AccountList extends React.Component {
                 }
               />
               <div>
-                <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
-                  <FontIcon className="material-icons">delete</FontIcon>
-                </IconButton> 
                 <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
                 { item.fav ?
                   <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
@@ -175,6 +172,9 @@ class AccountList extends React.Component {
                 }
                   
                 </IconButton>
+                <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
+                  <FontIcon className="material-icons">delete</FontIcon>
+                </IconButton> 
               </div>
           </List>
             <Divider />

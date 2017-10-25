@@ -123,3 +123,81 @@ button {
   //font-family: Roboto,sans-serif;
 
 }
+
+
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(0, 31, 63, 0.00);
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+
+//splash animation css
+.animation{
+  animation: pulse 1s;
+  background: white;
+
+}
+.rotate{
+  background-color:#e01563;
+  z-index:1;
+  animation-delay: 4s;
+  padding: 100px 10px;
+  width: 2px;
+  border-radius: 25px;
+  opacity:0.8;
+  position: absolute;
+  margin-left: 180px !important;
+  margin-top: 100px;
+}
+
+.rotating {
+  background-color:#e9a820;
+  -webkit-animation: rotating 3s linear forwards;
+  -moz-animation: rotating 3s linear forwards;
+  -ms-animation: rotating 3s linear forwards;
+  -o-animation: rotating 3s linear forwards;
+  animation: rotating 3s forwards;
+}
+
+.rotating-left {
+  background-color:#3eb991;
+  -webkit-animation: rotating-left 3s linear forwards;
+  -moz-animation: rotating-left 3s linear forwards;
+  -ms-animation: rotating-left 3s linear forwards;
+  -o-animation: rotating-left 3s linear forwards;
+  animation: rotating-left 3s forwards;
+}
+
+@keyframes rotating-left {
+  from {
+    opacity: 0.1;
+  }
+  
+  to {
+    opacity: 0.8;
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    opacity: 0.1;
+  }
+  
+  to {
+    opacity: 0.8;
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
