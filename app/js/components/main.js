@@ -14,11 +14,7 @@ import SplashAnimation from '../containers/splashAnimation';
 
 
 const styles = {
-    textAlign: 'center',
-    animation: {
-      width: 465,
-      height: 800,
-    }
+    textAlign: 'center'
 };
 
 export default class Main extends React.Component {

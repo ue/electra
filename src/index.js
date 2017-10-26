@@ -21,14 +21,14 @@ let mainWindow;
 let createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    minWidth: 300, 
-    minHeight: 700, 
-  //  maxWidth: 450, 
-  //  maxHeight: 700, 
+    minWidth: 300,
+    minHeight: 700,
     width: 400,
     height: 700,
-    transparent: true, 
-    frame: false})
+    transparent: true,
+    frame: false,
+    //icon: path.join('file://', __dirname, 'assets/electron-logo.png')
+  })
 
   // and load the index.html of the app.
   mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))

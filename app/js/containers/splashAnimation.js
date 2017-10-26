@@ -21,6 +21,10 @@ class SplashAnimation extends React.Component {
           <div className="rotate"></div>
           <div className="rotate rotating"></div>
           <div className="rotate rotating-left"></div>
+          <div className="splash-banner">
+              electra
+          </div>
+          
         </div>
     );
   }

@@ -126,50 +126,80 @@ button {
 
 
 
+// @keyframes pulse {
+//   0% {
+//     opacity: 1;    
+//     background-color: rgba(255, 255, 255, 0.45);
+//   }
+//   50% {
+//     opacity: 1;    
+//     background-color: #FFFFFF;
+//   }
+//   100% {
+//     opacity: 1;
+//     background-color: rgba(255, 255, 255, 0.80);
+//   }
+// }
 @keyframes pulse {
   0% {
-    background-color: rgba(0, 31, 63, 0.00);
+    opacity: 0;    
+    background-color: rgba(255, 255, 255, 0.45);
   }
   100% {
+    opacity: 0.8;    
     background-color: #FFFFFF;
   }
 }
 
 //splash animation css
 .animation{
-  animation: pulse 1s;
+  // animation: pulse 6s;
   background: white;
 
 }
+
+.splash-banner{
+  animation: pulse 6s;
+  color: white;
+  font-size: 60px;
+  margin-left: 90px;
+  margin-top: 320px;
+  font-weight: bold;
+  position: absolute;
+  -webkit-text-stroke: 1px rgba(24, 22, 22, 0.34);
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
 .rotate{
   background-color:#e01563;
   z-index:1;
-  animation-delay: 4s;
+  animation-delay: 6s;
   padding: 100px 10px;
   width: 2px;
   border-radius: 25px;
   opacity:0.8;
   position: absolute;
-  margin-left: 180px !important;
+  margin-left: 180px;
   margin-top: 100px;
 }
 
 .rotating {
   background-color:#e9a820;
-  -webkit-animation: rotating 3s linear forwards;
-  -moz-animation: rotating 3s linear forwards;
-  -ms-animation: rotating 3s linear forwards;
-  -o-animation: rotating 3s linear forwards;
-  animation: rotating 3s forwards;
+  -webkit-animation: rotating 4s linear forwards;
+  -moz-animation: rotating 4s linear forwards;
+  -ms-animation: rotating 4s linear forwards;
+  -o-animation: rotating 4s linear forwards;
+  animation: rotating 4s forwards;
 }
 
 .rotating-left {
   background-color:#3eb991;
-  -webkit-animation: rotating-left 3s linear forwards;
-  -moz-animation: rotating-left 3s linear forwards;
-  -ms-animation: rotating-left 3s linear forwards;
-  -o-animation: rotating-left 3s linear forwards;
-  animation: rotating-left 3s forwards;
+  -webkit-animation: rotating-left 4s linear forwards;
+  -moz-animation: rotating-left 4s linear forwards;
+  -ms-animation: rotating-left 4s linear forwards;
+  -o-animation: rotating-left 4s linear forwards;
+  animation: rotating-left 4s forwards;
 }
 
 @keyframes rotating-left {
