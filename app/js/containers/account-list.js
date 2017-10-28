@@ -29,6 +29,9 @@ import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import FontIcon from 'material-ui/lib/font-icon';
 
+// Swipe Views
+import SwipeableViews from 'react-swipeable-views';
+
 // Input Field
 import TextField from 'material-ui/lib/text-field';
 
@@ -38,13 +41,14 @@ import InlineEdit from 'react-edit-inline';
 // Copy To Clipboard
 import Clipboard from 'react-clipboard.js';
 
+
 import Settings from './settings';
 
 const styles = {
-    height: 500,
-    overflowY: 'auto',
-    textAlign: 'center'
-}
+  height: 500,
+  overflowY: 'auto',
+  textAlign: 'center'
+};
 
 const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
@@ -58,16 +62,24 @@ class AccountList extends React.Component {
     super(props);
 
     this.state = { 
-      filter: ACCOUNT_FILTERS.SHOW_ALL,
+      slideIndex: 0,
       disabled: false,
       accountItem: '',
-      accountPassword: ''
+      accountPassword: '',
+      filter: ACCOUNT_FILTERS.SHOW_ALL,
     }
 
+    this.handleChange = this.handleChange.bind(this);    
     this.handleDelete = this.handleDelete.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
     this.accountItemChanged = this.accountItemChanged.bind(this);
     this.accountPasswordChanged = this.accountPasswordChanged.bind(this);
+  }
+
+  handleChange (value) {
+    this.setState({
+      slideIndex: value,
+    });
   }
   
   componentWillReceiveProps(nextProps) {
@@ -83,7 +95,7 @@ class AccountList extends React.Component {
       id: uuid.v4()
     });
   }
-  
+
   handleDelete(id) {
     this.props.deleteAccount(id);
   }
@@ -103,7 +115,6 @@ class AccountList extends React.Component {
   accountPasswordChanged(item){
     this.props.accountPasswordUpdate(item);
   }
-
 
   renderList() {
     if (this.props.accountItems) {
@@ -163,19 +174,23 @@ class AccountList extends React.Component {
                   />
                 }
               />
-              <div>
-                <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
-                { item.fav ?
-                  <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
-                  :
-                  <FontIcon className="material-icons favorite-icon">favorite_border</FontIcon>
-                }
-                  
-                </IconButton>
-                <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
-                  <FontIcon className="material-icons">delete</FontIcon>
-                </IconButton> 
-              </div>
+              {
+              this.state.slideIndex === 0 ?
+                <div>
+
+                  <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
+                  { item.fav ?
+                    <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
+                    :
+                    <FontIcon className="material-icons favorite-icon">favorite_border</FontIcon>
+                  }
+                  </IconButton>
+                  <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
+                    <FontIcon className="material-icons">delete</FontIcon>
+                  </IconButton> 
+                </div>
+                : null
+              }
           </List>
             <Divider />
           </div>
@@ -187,42 +202,56 @@ class AccountList extends React.Component {
   render() {
     return (
       <div>
-        <Tabs>
+        <Tabs
+          onChange={this.handleChange}
+          value={this.state.slideIndex}
+        >
           <Tab
+            value={0}
             icon={<FontIcon className="material-icons">home</FontIcon>}
             onActive={ () => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});}
             }
-          >
-            <List style={styles}>
-              {
-                this.renderList()
-              }
-            </List>
-          </Tab>
-
+          />
           <Tab
+            value={1}
             icon={<FontIcon className="material-icons">favorite</FontIcon>}
+            onClick={this.handleTab}
             onActive={() => {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_FAVORITES});}
             }
-          >
+          />
+          <Tab 
+            value={2}
+            icon={
+              <FontIcon className="material-icons">settings</FontIcon>
+            }/>
+        </Tabs>
+        <SwipeableViews
+          index={this.state.slideIndex}
+          onChangeIndex={this.handleChange}
+        >
+          <div>
             <List style={styles}>
               {
                 this.renderList()
               }
             </List>
-          </Tab>
-          
-          <Tab icon={<FontIcon className="material-icons">settings</FontIcon>}>
-              { <Settings/> }
-          </Tab>
-        </Tabs>
-        
-        <FloatingActionButton mini={true} className="addButton" onClick={this.handlePlusClick.bind(this)}>
-          <i className="material-icons">add</i>
-        </FloatingActionButton>
-        
+            <FloatingActionButton mini={true} onClick={this.handlePlusClick.bind(this)}>
+              <i className="material-icons">add</i>
+            </FloatingActionButton>
+          </div>
+          <div style={styles.slide}>
+            <List style={styles}>
+              {
+                this.renderList()
+              }
+            </List>
+          </div>
+          <div style={styles.slide}>
+            { <Settings/> }
+          </div>
+        </SwipeableViews>
       </div>
     );
   }
