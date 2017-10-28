@@ -2,7 +2,7 @@
 // ELECTRON SIDE 
 const electron = require('electron');
 // Interprocess communication so that React can communicate with Electron.
-const ipc = require('ipc');
+const ipcMain = require("electron").ipcMain;
 // Module to control application life.
 const app = electron.app;
 const dialog = electron.dialog;
@@ -11,7 +11,7 @@ const Tray = electron.Tray;
 const Menu = electron.Menu;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
+const {nativeImage} = require('electron');
 const path = require('path');
 const fs = require('fs');
 // Keep a global reference of the window object, if you don't, the window will
@@ -62,15 +62,15 @@ let createWindow = () => {
   tray.setContextMenu(contextMenu);
 }
 
-ipc.on('close-main-window', function () {
+ipcMain.on('close-main-window', function () {
     app.quit();
 });
 
-ipc.on('minimize', function () {
+ipcMain.on('minimize', function () {
     mainWindow.minimize();
 });
 
-ipc.on('export-to-pdf', function () {
+ipcMain.on('export-to-pdf', function () {
 
   let pdfSavePath = dialog.showSaveDialog({ 
     title: 'Save as PDF File',
@@ -79,7 +79,7 @@ ipc.on('export-to-pdf', function () {
 
 });
 
-ipc.on('go-to-github', function () {
+ipcMain.on('go-to-github', function () {
   electron.shell.openExternal('https://github.com/ue/electra');
 });
 
