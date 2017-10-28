@@ -24,7 +24,7 @@ let createWindow = () => {
     minWidth: 300,
     minHeight: 700,
     width: 400,
-    height: 700,
+    height: 750,
     transparent: true,
     frame: false,
     //icon: path.join('file://', __dirname, 'assets/electron-logo.png')

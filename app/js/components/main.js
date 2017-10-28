@@ -31,7 +31,7 @@ export default class Main extends React.Component {
   componentDidMount() {
     setTimeout(function() {
       this.setState({splashAnimation: false});
-    }.bind(this), 0);
+    }.bind(this), 5000);
   }
 
  

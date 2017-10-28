@@ -87,6 +87,14 @@ button {
   color: #ff4081 !important;
 }
 
+.addButton {
+  margin: 0px;
+  top: auto;
+  right: 20px;
+  bottom: 20px;
+  left: auto;
+  position: fixed !important;
+}
 .listItem {
   cursor: default !important;
 }
@@ -110,40 +118,23 @@ button {
   font-size: 22px;
   color: rgba(255, 12, 12, 0.90);
   //font-family: Roboto,sans-serif;
-
 }
-
-
-
-// @keyframes pulse {
-//   0% {
-//     opacity: 1;    
-//     background-color: rgba(255, 255, 255, 0.45);
-//   }
-//   50% {
-//     opacity: 1;    
-//     background-color: #FFFFFF;
-//   }
-//   100% {
-//     opacity: 1;
-//     background-color: rgba(255, 255, 255, 0.80);
-//   }
-// }
+// Splash animation Css
 @keyframes pulse {
   0% {
     opacity: 0;    
-    background-color: rgba(255, 255, 255, 0.45);
+    //background-color: rgba(255, 255, 255, 0.45);
   }
   100% {
     opacity: 0.8;    
-    background-color: #FFFFFF;
+    //background-color: #FFFFFF;
   }
 }
 
-//splash animation css
 .animation{
-  // animation: pulse 6s;
-  background: white;
+  animation: pulse 1s;
+  //background: white;
+  height: 680px !important;
 
 }
 

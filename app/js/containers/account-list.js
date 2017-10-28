@@ -45,8 +45,7 @@ import Clipboard from 'react-clipboard.js';
 import Settings from './settings';
 
 const styles = {
-  height: 500,
-  overflowY: 'auto',
+  height: 550,
   textAlign: 'center'
 };
 
@@ -237,7 +236,7 @@ class AccountList extends React.Component {
                 this.renderList()
               }
             </List>
-            <FloatingActionButton mini={true} onClick={this.handlePlusClick.bind(this)}>
+            <FloatingActionButton mini={false} className="addButton" onClick={this.handlePlusClick.bind(this)}>
               <i className="material-icons">add</i>
             </FloatingActionButton>
           </div>
