@@ -41,7 +41,6 @@ button {
   border: none;
   outline: none;
   background-color: transparent;
-  color: rgba(0, 0, 0, 0.33);
   font-size: 15px;
   text-align: center;
   margin-right: 15px;
@@ -126,7 +125,7 @@ button {
     //background-color: rgba(255, 255, 255, 0.45);
   }
   100% {
-    opacity: 0.8;    
+    opacity: 0.6;    
     //background-color: #FFFFFF;
   }
 }

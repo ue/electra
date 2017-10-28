@@ -31,7 +31,7 @@ export default class Main extends React.Component {
   componentDidMount() {
     setTimeout(function() {
       this.setState({splashAnimation: false});
-    }.bind(this), 5000);
+    }.bind(this), 0);
   }
 
  
@@ -57,7 +57,7 @@ export default class Main extends React.Component {
     } else{
       return (
         <div style={styles}>
-          <MuiThemeProvider muiTheme={ getMuiTheme(localStorage.getItem('darkTheme') === true ? darkBaseTheme : null) }>
+          <MuiThemeProvider muiTheme={ getMuiTheme(false === true ? darkBaseTheme : null) }>
             <Paper zDepth={2}>
               <ElcectraAppBar />
               <AccountList />

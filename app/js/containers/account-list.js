@@ -204,6 +204,8 @@ class AccountList extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
+          inkBarStyle={{background: 'white'}}
+          tabItemContainerStyle={{ backgroundColor: '#EA0A5A' }}
         >
           <Tab
             value={0}

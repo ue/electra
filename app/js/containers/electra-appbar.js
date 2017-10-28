@@ -22,7 +22,7 @@ export default class ElectraAppBar extends React.Component {
       <div>
     <AppBar
       title="electra"
-      style={{WebkitAppRegion: "drag"}}
+      style={{WebkitAppRegion: "drag", backgroundColor: "#F50057"}}
       iconElementLeft={
         <IconButton onTouchTap={() => {ipc.send('close-main-window')}}>
           <NavigationClose />
