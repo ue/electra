@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Toggle from 'material-ui/lib/Toggle';
 
 const styles = {
@@ -11,7 +10,6 @@ class Settings extends React.Component {
     super(props);
 
     this.state = { 
-      //default settings
       darkTheme: false
     };
 

@@ -8,8 +8,7 @@ import {
   accountItemUpdate,
   deleteAccount,
   addToFavorites,
-  accountPasswordUpdate,
-  completeAccount
+  accountPasswordUpdate
 } from '../actions/index';
 
 // Id
@@ -41,8 +40,8 @@ import InlineEdit from 'react-edit-inline';
 // Copy To Clipboard
 import Clipboard from 'react-clipboard.js';
 
-
-import Settings from './settings';
+//import Settings from './settings';
+//for next release settings page
 
 const styles = {
   height: 550,
@@ -222,11 +221,11 @@ class AccountList extends React.Component {
               this.setState({filter: ACCOUNT_FILTERS.SHOW_FAVORITES});}
             }
           />
-          <Tab 
+          {/* <Tab 
             value={2}
             icon={
               <FontIcon className="material-icons">settings</FontIcon>
-            }/>
+            }/> */}
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
@@ -249,9 +248,9 @@ class AccountList extends React.Component {
               }
             </List>
           </div>
-          <div style={styles.slide}>
+          {/* <div style={styles.slide}>
             { <Settings/> }
-          </div>
+          </div> */}
         </SwipeableViews>
       </div>
     );
@@ -270,8 +269,7 @@ function mapDispatchToProps(dispatch) {
     accountItemUpdate,
     accountPasswordUpdate,
     deleteAccount,
-    addToFavorites,
-    completeAccount
+    addToFavorites
   }, dispatch);
 }
 

@@ -8,8 +8,8 @@ export default function accountItems(state = initialState(), action) {
   console.log("Logger");
   console.log(action);
     switch (action.type) {
-      case 'ACCOUNT_ADDED':
-        return state.concat(action.payload);
+    case 'ACCOUNT_ADDED':
+      return state.concat(action.payload);
 
       case 'ACCOUNT_ITEM_UPDATE':
       return state.map((account) => {
@@ -34,10 +34,10 @@ export default function accountItems(state = initialState(), action) {
 
       case 'ADD_TO_FAVORITES':
         return state.map((account) => {
-            if (account.id === action.payload) {
-                account.fav = !account.fav;
-            }
-            return account;
+          if (account.id === action.payload) {
+              account.fav = !account.fav;
+          }
+          return account;
         });
     }
     return state; 

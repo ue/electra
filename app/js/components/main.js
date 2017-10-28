@@ -4,14 +4,11 @@ import AccountList from '../containers/account-list';
 import ElcectraAppBar from '../containers/electra-appbar';
 
 import Paper from 'material-ui/lib/paper';
-
 import darkBaseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
-import Settings from '../containers/settings';
 import SplashAnimation from '../containers/splashAnimation';
-
 
 const styles = {
     textAlign: 'center'
@@ -23,31 +20,22 @@ export default class Main extends React.Component {
     super(props);
 
     this.state = {
-      splashAnimation: true
+      splashAnimation: true,
+      isDark: localStorage.getItem('darkTheme'),
     }
-
   }
 
-  componentDidMount() {
+  componentWillMount() {
     setTimeout(function() {
       this.setState({splashAnimation: false});
     }.bind(this), 0);
-  }
 
- 
-
-  updateTheme(isDark) {
-    // Settings just toggled the theme!
-    console.log("togllglglgeeee");
-    console.log(isDark);
-    
+    this.setState({
+      isDark: localStorage.getItem('darkTheme')
+    });
+    console.log(localStorage.getItem('darkTheme'));
+    console.log(this.state.isDark);
   }
-  // render() {
-  //   return (
-  //           <Settings updateTheme={this.updateTheme} />
-      
-  //   );
-  // }
   
   render() {
     if(this.state.splashAnimation){
@@ -57,7 +45,7 @@ export default class Main extends React.Component {
     } else{
       return (
         <div style={styles}>
-          <MuiThemeProvider muiTheme={ getMuiTheme(false === true ? darkBaseTheme : null) }>
+          <MuiThemeProvider muiTheme={ getMuiTheme(this.state.isDark === true ? darkBaseTheme : null) }>
             <Paper zDepth={2}>
               <ElcectraAppBar />
               <AccountList />

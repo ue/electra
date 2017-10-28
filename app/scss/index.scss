@@ -89,17 +89,18 @@ button {
 .addButton {
   margin: 0px;
   top: auto;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
   left: auto;
   position: fixed !important;
 }
+
 .listItem {
   cursor: default !important;
 }
 
 .listItem:hover {
-  background: rgba(0, 188, 212, 0.15) !important;
+  background: rgba(255, 0, 91, 0.12) !important;
 }
 
 .warningForEmpty {
@@ -134,7 +135,6 @@ button {
   animation: pulse 1s;
   //background: white;
   height: 680px !important;
-
 }
 
 .splash-banner{
