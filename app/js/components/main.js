@@ -28,7 +28,7 @@ export default class Main extends React.Component {
   componentWillMount() {
     setTimeout(function() {
       this.setState({splashAnimation: false});
-    }.bind(this), 0);
+    }.bind(this), 5000);
 
     this.setState({
       isDark: localStorage.getItem('darkTheme')
