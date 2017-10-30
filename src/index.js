@@ -27,11 +27,11 @@ let createWindow = () => {
     height: 750,
     transparent: true,
     frame: false,
-    //icon: path.join('file://', __dirname, 'assets/electron-logo.png')
+    icon: path.join(path.resolve(app.getAppPath(), './assets/icon.png'))
   })
 
   // and load the index.html of the app.
-  mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
+  mainWindow.loadURL(path.join('file://', __dirname, '/index.html'));
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -39,10 +39,10 @@ let createWindow = () => {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
-  })
+  });
 
   // System tray.
-  var tray = new Tray('./app/assets/assignment.png');
+  var tray = new Tray(path.resolve(app.getAppPath(), './assets/icon.png'));
 
   var contextMenu = Menu.buildFromTemplate([
     { label: 'open', click: () => {mainWindow.restore(); mainWindow.show();} },
