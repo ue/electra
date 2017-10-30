@@ -53,6 +53,24 @@ Happy coding!
 * **Note: requires a node version >= 7 and an npm version >= 4.**
 * **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/ue/electra/issues)**
 
+## How to create package
+
+Package for all platforms
+```gulp package ```
+
+For OSx
+
+```gulp package-osx ```
+
+For Windows
+
+```gulp ackage-windows ```
+
+For Linux
+
+```gulp package-linux' ```
+
+
 ## How to keep the app updated
 
 If your application is a fork from this repo, you can add this repo to another git remote:
