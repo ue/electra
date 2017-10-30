@@ -119,20 +119,20 @@ button {
   color: rgba(255, 12, 12, 0.90);
 }
 // Splash animation Css
-// @keyframes pulse {
-//   0% {
-//     opacity: 0.2;    
-//     background-color: #FFFFFF;
-//   }
-//   50% {
-//     opacity: 0.6;    
-//     background-color: #FFFFFF;
-//   }
-//   100% {
-//     opacity: 0.6;    
-//     background-color: #FFFFFF;
-//   }
-// }
+@keyframes pulse {
+  0% {
+    opacity: 0.2;    
+    background-color: #FFFFFF;
+  }
+  50% {
+    opacity: 0.6;    
+    background-color: #FFFFFF;
+  }
+  100% {
+    opacity: 0.6;    
+    background-color: #FFFFFF;
+  }
+}
 
 .animation{
   //animation: pulse 1s;
