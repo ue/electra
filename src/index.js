@@ -25,8 +25,8 @@ let createWindow = () => {
     height: 750,
     transparent: true,
     frame: false
+   // icon: path.join(path.resolve(app.getAppPath(), './assets/icon.png'))
   })
-
 
   mainWindow.loadURL(path.join('file://', __dirname, '/index.html'));
 
@@ -36,8 +36,12 @@ let createWindow = () => {
   });
 
   // System tray.
+
   //var tray = new Tray('./app/assets/assignment.png');
   var tray = new Tray(path.resolve(app.getAppPath(), './app/assets/assignment.png'));
+
+  //var tray = new Tray(path.resolve(app.getAppPath(), './assets/icon.png'));
+
 
   var contextMenu = Menu.buildFromTemplate([
     { label: 'open', click: () => {mainWindow.restore(); mainWindow.show();} },
