@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "React + Redux + Material UI + Electron Account App",
   "main": "build/index.js",
-  "author": "troyedwardsjr",
+  "author": "ue",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-preset-es2015": "^6.5.0",
