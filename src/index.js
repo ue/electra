@@ -1,19 +1,17 @@
 'use strict'
-// ELECTRON SIDE 
-const electron = require('electron');
-// Interprocess communication so that React can communicate with Electron.
-const ipcMain = require("electron").ipcMain;
-// Module to control application life.
-const app = electron.app;
-const dialog = electron.dialog;
-// Module to control application tray and menu.
-const Tray = electron.Tray;
-const Menu = electron.Menu;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
-const {nativeImage} = require('electron');
-const path = require('path');
-const fs = require('fs');
+const {
+  electron,
+  ipcMain,
+  app,
+  dialog,
+  Tray,
+  Menu,
+  BrowserWindow,
+  nativeImage,
+  clipboard
+}                 = require('electron');
+const path        = require('path');
+
 let mainWindow;
 
 let createWindow = () => {
@@ -24,8 +22,8 @@ let createWindow = () => {
     width: 400,
     height: 750,
     transparent: true,
-    frame: false
-   // icon: path.join(path.resolve(app.getAppPath(), './assets/icon.png'))
+    frame: false,
+    icon: path.join(path.resolve(app.getAppPath(), './assets/lo-icon@2x.png'))
   })
 
   mainWindow.loadURL(path.join('file://', __dirname, '/index.html'));
@@ -36,12 +34,23 @@ let createWindow = () => {
   });
 
   // System tray.
+  //Tray with native image also this one fix the "index 0" error but still not shown image
 
-  //var tray = new Tray('./app/assets/assignment.png');
-  var tray = new Tray(path.resolve(app.getAppPath(), './app/assets/assignment.png'));
+  let image = nativeImage.createFromPath('./app/assets/lo-icon@2x.png')
+  let tray = new Tray(image)
+  console.log(tray)
 
+  // it resolve index 0 error
+  // const image = clipboard.readImage()
+  // var tray = new Tray(image);
+  // console.log(tray);
+
+  //it work also with error after package
+  //let tray = new Tray('./app/assets/icon@2x.png')
+
+  //other things
+  //var tray = new Tray('./app/assets/icon@2x.png');
   //var tray = new Tray(path.resolve(app.getAppPath(), './assets/icon.png'));
-
 
   var contextMenu = Menu.buildFromTemplate([
     { label: 'open', click: () => {mainWindow.restore(); mainWindow.show();} },
@@ -97,4 +106,3 @@ app.on('activate', () => {
     createWindow()
   }
 })
-

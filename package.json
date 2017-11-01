@@ -1,6 +1,6 @@
 {
   "name": "electra",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "React + Redux + Material UI + Electron Account App",
   "main": "build/index.js",
   "author": "ue",
