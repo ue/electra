@@ -2,9 +2,9 @@
 
 <h1 align="center"> Electra Desktop App </h1>
 
-<p align="center"> Save your test accouns and use easy! </p>
+<p align="center"> Save your test accouns easy and use quickly! 😎</p>
 
-<p align="center"> Why you still keep on notepad? This app build for instead of notepad! </p>
+<p align="center"> Why you still keep on notepad? This app builded for instead of notepad! </p>
 <p align="center"><img align="center" src="https://media.giphy.com/media/3ov9jZovC5UqLk9xIY/giphy.gif"/></p>
 
 ### Downloading And Installing
@@ -31,11 +31,15 @@ First, clone the repo via git:
 git clone --depth=1 https://github.com/ue/electra your-project-name
 ```
 
-And then install dependencies with yarn.
+And then install dependencies with yarn or npm.
 
 ```bash
-$ cd your-project-name
+$ cd electra
 $ yarn
+```
+or
+```bash
+$ npm install
 ```
 
 Start the app in the `dev` environment. This starts the renderer process in [**hot-module-replacement**](https://webpack.js.org/guides/hmr-react/) mode and starts a server that sends hot updates to the renderer process:
