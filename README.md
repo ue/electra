@@ -1,12 +1,11 @@
-![](http://i63.tinypic.com/27zkuwg.png)
+<p align="center"><img align="center" src="http://i63.tinypic.com/27zkuwg.png"/></p>
 
-# Electra Desktop App
+<h1 align="center"> Electra Desktop App </h1>
 
-Save your test accouns and use easy!
+<p align="center"> Save your test accouns and use easy! </p>
 
-Why you still keep on notepad? This app build for instead of notepad!
-
-![](https://media.giphy.com/media/3ov9jZovC5UqLk9xIY/giphy.gif)
+<p align="center"> Why you still keep on notepad? This app build for instead of notepad! </p>
+<p align="center"><img align="center" src="https://media.giphy.com/media/3ov9jZovC5UqLk9xIY/giphy.gif"/></p>
 
 ### Downloading And Installing
 
