@@ -45,10 +45,12 @@ button {
   text-align: center;
   margin-right: 15px;
   cursor: pointer;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-//  material-icons clipboard-icon  ====     right: -370px;
 
-//  clipboard-btn ===  padding-right: 400px;
 .editing {
   position: relative;
   border: none;
@@ -62,6 +64,8 @@ button {
   font-weight: bold;
   width: 100%;
   height: 100%;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 .clipboard-btn {
