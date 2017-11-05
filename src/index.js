@@ -37,19 +37,6 @@ let createWindow = () => {
 
   let image = nativeImage.createFromPath('./app/assets/lo-icon@2x.png')
   let tray = new Tray(image)
-  console.log(tray)
-
-  // it resolve index 0 error
-  // const image = clipboard.readImage()
-  // var tray = new Tray(image);
-  // console.log(tray);
-
-  //it work also with error after package
-  //let tray = new Tray('./app/assets/icon@2x.png')
-
-  //other things
-  //var tray = new Tray('./app/assets/icon@2x.png');
-  //var tray = new Tray(path.resolve(app.getAppPath(), './assets/icon.png'));
 
   var contextMenu = Menu.buildFromTemplate([
     { label: 'open', click: () => {mainWindow.restore(); mainWindow.show();} },

@@ -5,7 +5,7 @@
 <p align="center"> Save your test accouns easy and use quickly! 😎</p>
 
 <p align="center"> Why you still keep on notepad? This app builded for instead of notepad! </p>
-<p align="center"><img align="center" src="https://media.giphy.com/media/3ov9jZovC5UqLk9xIY/giphy.gif"/></p>
+<p align="center"><img align="center" src="https://media.giphy.com/media/3o6fJ9D5tx0KtS0LgA/giphy.gif"/></p>
 
 ### Downloading And Installing
 
@@ -62,15 +62,29 @@ Package for all platforms
 
 For OSx
 
-```gulp package-osx ```
+```yarn run package-mac ```
 
 For Windows
 
-```gulp ackage-windows ```
+```yarn run package-win ```
 
 For Linux
 
-```gulp package-linux' ```
+```yarn run package-linux' ```
+
+## How to create installer
+
+For OSx
+
+```yarn run create-installer-mac ```
+
+For Windows
+
+```yarn run create-installer-win ```
+
+For Linux
+
+```yarn run create-debian-installer' ```
 
 
 ## How to keep the app updated

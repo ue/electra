@@ -17,6 +17,7 @@
     "browserify": "^13.0.0",
     "electron-connect": "^0.3.7",
     "electron-prebuilt": "^0.36.8",
+    "electron-winstaller": "^2.6.3",
     "eslint": "^2.2.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-config-standard-jsx": "^1.1.1",
@@ -35,10 +36,10 @@
     "gulp-symdest": "^1.0.0",
     "gulp-useref": "^3.0.6",
     "gulp-vinyl-zip": "^1.1.2",
-    "react-edit-inline": "^1.0.8",
-    "vinyl-source-stream": "^1.1.0"
+    "react-edit-inline": "^1.0.8"
   },
   "dependencies": {
+    "electron-installer-dmg": "^0.2.1",
     "lodash": "^4.6.1",
     "material-ui": "^0.14.4",
     "node-uuid": "^1.4.7",
@@ -50,6 +51,15 @@
     "react-swipeable-views": "^0.12.9",
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.3.1",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=app/assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electra --overwrite --asar=true --platform=win32 --arch=ia32 --icon=app/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=UE --version-string.FileDescription=CE --version-string.ProductName=\"electra\"",
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/ue-electra-darwin-x64/ue-electra.app electra --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
+    "create-installer-win": "node src/installers/windows/createinstaller.js",
+    "create-debian-installer": "electron-installer-debian --src release-builds/ue-electra-tutorial-app-linux-x64/ --arch amd64 --config debian.json"
   }
 }
