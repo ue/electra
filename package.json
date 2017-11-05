@@ -1,7 +1,7 @@
 {
-  "name": "electra",
+  "name": "ue-electra",
   "version": "1.0.0",
-  "description": "React + Redux + Material UI + Electron Account App",
+  "description": "electra",
   "main": "build/index.js",
   "author": "ue",
   "repository": {
@@ -16,9 +16,7 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "electron-connect": "^0.3.7",
-    "electron-packager": "^9.1.0",
     "electron-prebuilt": "^0.36.8",
-    "electron-winstaller": "^2.6.3",
     "eslint": "^2.2.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-config-standard-jsx": "^1.1.1",
@@ -37,22 +35,21 @@
     "gulp-symdest": "^1.0.0",
     "gulp-useref": "^3.0.6",
     "gulp-vinyl-zip": "^1.1.2",
+    "react-edit-inline": "^1.0.8",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "lodash": "^4.6.1",
     "material-ui": "^0.14.4",
     "node-uuid": "^1.4.7",
-    "react": "^0.14.9",
+    "react": "^0.14.7",
     "react-clipboard.js": "^1.1.2",
-    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^0.14.7",
-    "react-edit-inline": "^1.0.8",
+    "react-motion": "^0.5.2",
     "react-redux": "^4.4.1",
-    "react-swipeable-views": "^0.12.8",
+    "react-swipeable-views": "^0.12.9",
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.3.1",
-    "redux-logger": "^3.0.6",
     "request": "^2.69.0"
   }
 }
