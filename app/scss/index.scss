@@ -46,7 +46,9 @@ button {
   margin-right: 15px;
   cursor: pointer;
 }
+//  material-icons clipboard-icon  ====     right: -370px;
 
+//  clipboard-btn ===  padding-right: 400px;
 .editing {
   position: relative;
   border: none;
@@ -69,9 +71,11 @@ button {
   height: 30px !important;
   width: 35px !important;
   right: 0px !important;
+  padding-right: 400px;
 
   .clipboard-icon {
     color: #ff4081 !important;
+    right: -370px;
   }
 }
 
@@ -82,10 +86,6 @@ button {
   outline: 0;
 }
 
-.clipboard-icon {
-  color: #ff4081 !important;
-}
-
 .addButton {
   margin: 0px;
   top: auto;
@@ -93,6 +93,11 @@ button {
   bottom: 10px;
   left: auto;
   position: fixed !important;
+}
+
+.subButtons{
+  height: 35px;
+  margin-top: -13px;
 }
 
 .listItem {

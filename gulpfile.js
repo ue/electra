@@ -176,7 +176,7 @@ gulp.task('lint', ['lint-client', 'lint-server'])
 
 /* This is the serve task! */
 
-gulp.task('run-electra', ['build', 'watch'], () => {
+gulp.task('electra', ['build', 'watch'], () => {
   electron.start()
   gulp.watch('./build/index.js', electron.restart)
   gulp.watch(['./build/js/*.js', './build/css/*.css'], electron.reload)

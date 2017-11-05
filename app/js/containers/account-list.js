@@ -174,8 +174,7 @@ class AccountList extends React.Component {
               />
               {
               this.state.slideIndex === 0 ?
-                <div>
-
+                <div className="subButtons">
                   <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
                   { item.fav ?
                     <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
@@ -203,7 +202,7 @@ class AccountList extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
-          inkBarStyle={{background: '#FFFF00'}}
+          inkBarStyle={{background: '#FFFFFF'}}
           tabItemContainerStyle={{ backgroundColor: '#EA0A5A' }}
         >
           <Tab

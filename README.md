@@ -47,7 +47,6 @@ Start the app in the `dev` environment. This starts the renderer process in [**h
 ```bash
 $ gulp electra
 ```
-May need `sudo `
 
 Now you ready to code.
   
