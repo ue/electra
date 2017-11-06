@@ -56,7 +56,7 @@
   },
   "scripts": {
     "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=app/assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electra --overwrite --asar=true --platform=win32 --arch=ia32 --icon=app/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=UE --version-string.FileDescription=CE --version-string.ProductName=\"electra\"",
+    "package-win": "electron-packager . electra --overwrite --asar=true --platform=win32 --arch=ia32 --icon=app/assets/icons/win/icon-win.ico --prune=true --out=release-builds --version-string.CompanyName=UE --version-string.FileDescription=UE --version-string.ProductName=\"electra\"",
     "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
     "create-installer-mac": "electron-installer-dmg ./release-builds/ue-electra-darwin-x64/ue-electra.app electra --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
     "create-installer-win": "node src/installers/windows/createinstaller.js",
