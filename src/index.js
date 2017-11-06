@@ -8,7 +8,8 @@ const {
   Menu,
   BrowserWindow,
   nativeImage,
-  clipboard
+  clipboard,
+  shell
 }                 = require('electron');
 const path        = require('path');
 
@@ -64,17 +65,8 @@ ipcMain.on('minimize', function () {
     mainWindow.minimize();
 });
 
-ipcMain.on('export-to-pdf', function () {
-
-  let pdfSavePath = dialog.showSaveDialog({ 
-    title: 'Save as PDF File',
-    filters: [{ name: 'PDF Files', extensions: ['pdf'] }]
-  });
-
-});
-
 ipcMain.on('go-to-github', function () {
-  electron.shell.openExternal('https://github.com/ue/electra');
+  shell.openExternal('https://github.com/ue/electra');
 });
 
 app.on('ready', createWindow)

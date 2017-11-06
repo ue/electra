@@ -70,7 +70,7 @@ For Windows
 
 For Linux
 
-```yarn run package-linux' ```
+```yarn run package-linux ```
 
 ## How to create installer
 
@@ -84,7 +84,7 @@ For Windows
 
 For Linux
 
-```yarn run create-debian-installer' ```
+```yarn run create-debian-installer ```
 
 
 ## How to keep the app updated

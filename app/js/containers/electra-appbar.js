@@ -36,7 +36,6 @@ export default class ElectraAppBar extends React.Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <MenuItem primaryText="Export to PDF" onTouchTap={ () => {ipc.send('export-to-pdf')} }/>
           <MenuItem primaryText="Minimize" onTouchTap={ () => {ipc.send('minimize')} }/>
           <MenuItem primaryText="About" onTouchTap={ () => {ipc.send('go-to-github')} }/>
         </IconMenu>
