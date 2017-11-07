@@ -36,7 +36,6 @@ button {
 
 .inlineEdit {
   position: relative;
-  width: 100%;
   height: 100%;
   border: none;
   outline: none;
@@ -57,13 +56,12 @@ button {
   outline: none;
   background-color: transparent;
   color: #ff4081;
-  font-size: 15px;
+  font-size: 16px;
   text-align: center;
   bottom: 2px;
   font-weight: bold;
-  width: 100%;
   height: 100%;
-  
+  margin-right: 15px;
 }
 
 .clipboard-btn {
