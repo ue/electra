@@ -11,7 +11,7 @@
 
 [Download for MacOs](http://.com)
 
-[Download For Windows](https://goo.gl/H4UHvB)
+[Download For Windows](https://goo.gl/as5BQD)
 
 [Download For Linux](http://.com)
 
