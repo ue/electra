@@ -35,6 +35,7 @@ export default class Main extends React.Component {
     });
     console.log(localStorage.getItem('darkTheme'));
     console.log(this.state.isDark);
+    console.log("ORTAMLARDA PR CIKTI DERSINIZ");
   }
   
   render() {
