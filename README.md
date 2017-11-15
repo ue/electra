@@ -9,11 +9,12 @@
 
 ### Downloading And Installing
 
-[Download for MacOs](http://.com)
+[Download for MacOs](https://drive.google.com/uc?id=1Vv5BH0B3hWFrmSQwl1DGiKgH7AavceOL&export=download)
 
-[Download For Windows](http://.com)
+[Download For Windows](https://goo.gl/as5BQD)
 
-[Download For Linux](http://.com)
+Setup for MacOS I'm a undefined developer for Apple :) You should change your app run settings just for a short time go to 
+System Preferences > Security & Priacy and set Appstore and identified developer
 
 Whatever your system if, you can choose appropriate to download it. And install so easy.
 
@@ -68,9 +69,6 @@ For Windows
 
 ```yarn run package-win ```
 
-For Linux
-
-```yarn run package-linux ```
 
 ## How to create installer
 
@@ -81,10 +79,6 @@ For OSx
 For Windows
 
 ```yarn run create-installer-win ```
-
-For Linux
-
-```yarn run create-debian-installer ```
 
 
 ## How to keep the app updated

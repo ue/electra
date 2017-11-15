@@ -15,11 +15,11 @@ function getInstallerConfig () {
 
   return Promise.resolve({
     appDirectory: path.join(outPath, 'electra-win32-ia32/'),
-    authors: 'Christian Engvall',
+    authors: 'Ugur Erdal',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'electra.exe',
-    setupExe: 'electraAppInstaller.exe',
+    setupExe: 'ElectraAppInstaller.exe',
     setupIcon: path.join(rootPath, 'app', 'assets', 'icons', 'win', 'icon-win.ico')
   })
 }
