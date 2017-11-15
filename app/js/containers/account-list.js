@@ -39,13 +39,17 @@ import InlineEdit from 'react-edit-inline';
 
 // Copy To Clipboard
 import Clipboard from 'react-clipboard.js';
+import { Z_BLOCK } from 'zlib';
 
 //import Settings from './settings';
 //for next release settings page
 
 const styles = {
   height: 550,
-  textAlign: 'center'
+  textAlign: 'center',
+  lockButton:{
+    pointerEvents: 'none'
+  }
 };
 
 const ACCOUNT_FILTERS = {
@@ -65,6 +69,7 @@ class AccountList extends React.Component {
       accountItem: '',
       accountPassword: '',
       filter: ACCOUNT_FILTERS.SHOW_ALL,
+      isLock: false
     }
 
     this.handleChange = this.handleChange.bind(this);    
@@ -92,6 +97,16 @@ class AccountList extends React.Component {
       accountPassword: "Also Password",
       id: uuid.v4()
     });
+  }
+
+  handleLockClick(e) {
+    e.preventDefault();
+    
+    this.setState({
+      isLock: !this.state.isLock
+    });
+
+    console.log(this.state.isLock);
   }
 
   handleDelete(id) {
@@ -128,7 +143,7 @@ class AccountList extends React.Component {
 
       return shownAccountList.map((item) => {
         return(
-          <div className="itemStyle" key={item.id}>
+          <div className="itemStyle" key={ item.id }>
             <List>
               <ListItem
                 className="listItem"
@@ -136,18 +151,19 @@ class AccountList extends React.Component {
                   <FontIcon className="material-icons quick-icon">mail_outline</FontIcon>
                 }
                 rightIcon={
-                  <Clipboard className="clipboard-btn" data-clipboard-text={item.accountItem}>
+                  <Clipboard className="clipboard-btn" data-clipboard-text={ item.accountItem }>
                     <FontIcon className="material-icons clipboard-icon" >content_copy</FontIcon>
                   </Clipboard>
                 }
                 primaryText={
                   <InlineEdit
-                    validate={this.customValidateText}
                     activeClassName="editing"
-                    text={ item.accountItem }
-                    paramName={ item.id }
                     change={ this.accountItemChanged.bind(this) }
                     className="inlineEdit"
+                    text={ item.accountItem }
+                    paramName={ item.id }
+                    style={ !this.state.isLock ? { pointerEvents: 'none' } : null}                    
+                    validate={ this.customValidateText }
                   />
                 }
               />
@@ -163,12 +179,13 @@ class AccountList extends React.Component {
                 }
                 primaryText={
                   <InlineEdit
-                    validate={this.customValidateText}
                     activeClassName="editing"
-                    text={ item.accountPassword }
-                    paramName={ item.id }
                     change={ this.accountPasswordChanged.bind(this) }
                     className="inlineEdit"
+                    text={ item.accountPassword }
+                    paramName={ item.id }
+                    style={ !this.state.isLock ? { pointerEvents: 'none' } : null}                    
+                    validate={ this.customValidateText }
                   />
                 }
               />
@@ -200,8 +217,8 @@ class AccountList extends React.Component {
     return (
       <div>
         <Tabs
-          onChange={this.handleChange}
-          value={this.state.slideIndex}
+          onChange={ this.handleChange }
+          value={ this.state.slideIndex }
           inkBarStyle={{background: '#FFFFFF'}}
           tabItemContainerStyle={{ backgroundColor: '#EA0A5A' }}
         >
@@ -209,7 +226,7 @@ class AccountList extends React.Component {
             value={0}
             icon={<FontIcon className="material-icons">home</FontIcon>}
             onActive={ () => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_ALL});}
+              this.setState({ filter: ACCOUNT_FILTERS.SHOW_ALL}); }
             }
           />
           <Tab
@@ -217,7 +234,7 @@ class AccountList extends React.Component {
             icon={<FontIcon className="material-icons">favorite</FontIcon>}
             onClick={this.handleTab}
             onActive={() => {
-              this.setState({filter: ACCOUNT_FILTERS.SHOW_FAVORITES});}
+              this.setState({ filter: ACCOUNT_FILTERS.SHOW_FAVORITES});} 
             }
           />
           {/* <Tab 
@@ -236,8 +253,15 @@ class AccountList extends React.Component {
                 this.renderList()
               }
             </List>
-            <FloatingActionButton mini={false} className="addButton" onClick={this.handlePlusClick.bind(this)}>
+            <FloatingActionButton mini={true} className="addButton" onClick={this.handlePlusClick.bind(this)}>
               <i className="material-icons">add</i>
+            </FloatingActionButton>
+            <FloatingActionButton mini={true} className="lockButton" onClick={this.handleLockClick.bind(this)}>
+              <i className="material-icons">
+              {
+                this.state.isLock ? "flip_to_back" : "flip_to_front"
+              }
+              </i>     
             </FloatingActionButton>
           </div>
           <div style={styles.slide}>

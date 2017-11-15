@@ -36,16 +36,11 @@ button {
 
 .inlineEdit {
   position: relative;
-  width: 100%;
-  height: 100%;
   border: none;
   outline: none;
-  background-color: transparent;
-  font-size: 15px;
-  text-align: center;
-  margin-right: 15px;
   cursor: pointer;
-  display: block;
+  display: flex;
+  font-size: 15px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -54,11 +49,11 @@ button {
 .editing {
   position: relative;
   border: none;
+  display: flex;  
   outline: none;
   background-color: transparent;
   color: #ff4081;
   font-size: 15px;
-  text-align: center;
   bottom: 2px;
   font-weight: bold;
   width: 100%;
@@ -88,11 +83,18 @@ button {
   outline: 0;
 }
 
-.addButton {
-  margin: 0px;
+.lockButton{
   top: auto;
-  right: 20px;
   bottom: 10px;
+  right: 65px;
+  left: auto;
+  position: fixed !important;
+}
+
+.addButton{
+  top: auto;
+  bottom: 10px;
+  right: 20px;
   left: auto;
   position: fixed !important;
 }
