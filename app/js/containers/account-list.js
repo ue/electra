@@ -69,7 +69,7 @@ class AccountList extends React.Component {
       accountItem: '',
       accountPassword: '',
       filter: ACCOUNT_FILTERS.SHOW_ALL,
-      isLock: false
+      isLock: true
     }
 
     this.handleChange = this.handleChange.bind(this);    
@@ -105,8 +105,8 @@ class AccountList extends React.Component {
     this.setState({
       isLock: !this.state.isLock
     });
-
-    console.log(this.state.isLock);
+    //TODO set the local storage and get setings.
+    localStorage.setItem('isLockButton', JSON.stringify(this.state.isLock));
   }
 
   handleDelete(id) {
