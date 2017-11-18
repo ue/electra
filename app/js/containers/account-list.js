@@ -89,6 +89,14 @@ class AccountList extends React.Component {
     localStorage.setItem('accounts', JSON.stringify(nextProps.accountItems));
   }
 
+  componentDidMount() {
+    const storageIsLockButton = JSON.parse(localStorage.getItem('isLockButton'));
+
+    if (this.state.isLock !== storageIsLockButton) {
+      this.setState({isLock: storageIsLockButton});
+    }
+  }
+
   handlePlusClick(e) {
     e.preventDefault();
     // Dispatch props
@@ -101,12 +109,12 @@ class AccountList extends React.Component {
 
   handleLockClick(e) {
     e.preventDefault();
-    
+
     this.setState({
       isLock: !this.state.isLock
     });
-    //TODO set the local storage and get setings.
-    localStorage.setItem('isLockButton', JSON.stringify(this.state.isLock));
+
+    localStorage.setItem('isLockButton', this.state.isLock);
   }
 
   handleDelete(id) {

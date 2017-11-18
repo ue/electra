@@ -1,4 +1,7 @@
-div {
+// Virables
+$edit-color: #ff4081;
+
+div { 
   h1 {
     font-size: 3em;
     color: green;
@@ -34,34 +37,34 @@ button {
   background-color: #eee;
 }
 
-.inlineEdit {
+@mixin inline-edit-mix {
   position: relative;
+  border: none;
+  display: flex;
   height: 100%;
   width: 100%;
-  border: none;
   outline: none;
-  cursor: pointer;
-  display: flex;
   font-size: 15px;
+}
+
+.inlineEdit {
+  @include inline-edit-mix;
+  cursor: pointer;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .editing {
-  position: relative;
-  border: none;
-  display: flex;  
-  outline: none;
+  @include inline-edit-mix;
   background-color: transparent;
-  color: #ff4081;
-  font-size: 15px;
+  color: $edit-color;
   bottom: 2px;
   font-weight: bold;
-  height: 100%;
-  width: 100%;
   margin-right: 15px;
 }
+
+
 
 .clipboard-btn {
   cursor: pointer;
@@ -73,7 +76,7 @@ button {
   padding-right: 400px;
 
   .clipboard-icon {
-    color: #ff4081 !important;
+    color: $edit-color !important;
     right: -370px;
   }
 }
@@ -160,22 +163,22 @@ button {
   margin-top: 320px;
   font-weight: bold;
   position: absolute;
-  -webkit-text-stroke: 1px rgba(24, 22, 22, 0.34);
   letter-spacing: 2px;
   opacity: 0.6;
+  -webkit-text-stroke: 1px rgba(24, 22, 22, 0.34);
 }
 
 .rotate{
-  background-color:#e01563;
-  z-index:1;
   animation-delay: 6s;
+  background-color:#e01563;
   padding: 100px 10px;
-  width: 2px;
   border-radius: 25px;
   opacity:0.8;
   position: absolute;
   margin-left: 180px;
   margin-top: 100px;
+  width: 2px;
+  z-index:1;
 }
 
 .rotating {
