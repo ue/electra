@@ -129,6 +129,10 @@ class AccountList extends React.Component {
     return (text.length > 0 && text.length < 64);
   }
 
+  customValidateTag(text) {
+    return (text.length > 0 && text.length < 14);
+  }
+
   accountItemChanged(item){
     this.props.accountItemUpdate(item);
   }
@@ -199,7 +203,23 @@ class AccountList extends React.Component {
               />
               {
               this.state.slideIndex === 0 ?
-                <div className="subButtons">
+              
+                <div className="subLine">
+                  <div className="editLine">
+                    <div className="avatarTag">
+                      <i className="material-icons">loyalty</i>
+                    </div>
+                    <InlineEdit
+                      activeClassName="editiginTag"
+                      change={ this.accountPasswordChanged.bind(this) }
+                      className="inlineEditTag"
+                      text={ item.accountPassword }
+                      style={ !this.state.isLock ? { pointerEvents: 'none' } : null}
+                      paramName={ item.id }
+                    validate={ this.customValidateTag }                    
+                    />
+                  </div>
+                  <div className="subButtons">
                   <IconButton className="" onTouchTap={() => this.handleFavorites(item.id)}>
                   { item.fav ?
                     <FontIcon className="material-icons favorite-icon">favorite</FontIcon>
@@ -209,7 +229,8 @@ class AccountList extends React.Component {
                   </IconButton>
                   <IconButton className="" onTouchTap={() => this.handleDelete(item.id)} >
                     <FontIcon className="material-icons">delete</FontIcon>
-                  </IconButton> 
+                  </IconButton>
+                  </div> 
                 </div>
                 : null
               }
