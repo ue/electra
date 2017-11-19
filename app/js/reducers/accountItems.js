@@ -27,6 +27,14 @@ export default function accountItems(state = initialState(), action) {
           return account;
       });
 
+      case 'ACCOUNT_TAG_UPDATE':
+      return state.map((account) => {
+          if (account.id === Object.keys(action.payload)[0]) {
+              account.tag = action.payload[account.id];
+          }
+          return account;
+      });
+
       case 'ACCOUNT_DELETED':
         return state.filter(account =>
             account.id !== action.payload

@@ -106,6 +106,10 @@ button {
   height: 35px;
 }
 
+.subButtons {
+  margin-top: -45px;
+}
+
 .inlineEditTag{
  float: left;
  color: rgba(0, 0, 0, 0.53);
@@ -146,7 +150,6 @@ button {
 }
 
 .editLine{
-  position: absolute !important;
   border: 10px;
   font-size: 13px;
   box-sizing: border-box;

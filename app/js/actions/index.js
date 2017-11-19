@@ -19,6 +19,13 @@ export function accountPasswordUpdate(id) {
   };
 }
 
+export function accountTagUpdate(id) {
+  return {
+    type: 'ACCOUNT_TAG_UPDATE',
+    payload: id
+  };
+}
+
 export function deleteAccount(id) {
   return { 
     type: 'ACCOUNT_DELETED', 

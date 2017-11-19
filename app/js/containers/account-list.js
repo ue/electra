@@ -8,7 +8,8 @@ import {
   accountItemUpdate,
   deleteAccount,
   addToFavorites,
-  accountPasswordUpdate
+  accountPasswordUpdate,
+  accountTagUpdate
 } from '../actions/index';
 
 // Id
@@ -103,6 +104,7 @@ class AccountList extends React.Component {
     this.props.addAccount({
       accountItem: "Clik here and add your Account",
       accountPassword: "Also Password",
+      tag: "#tag",
       id: uuid.v4()
     });
   }
@@ -139,6 +141,10 @@ class AccountList extends React.Component {
 
   accountPasswordChanged(item){
     this.props.accountPasswordUpdate(item);
+  }
+
+  accountTagChanged(item){
+    this.props.accountTagUpdate(item);
   }
 
   renderList() {
@@ -211,12 +217,12 @@ class AccountList extends React.Component {
                     </div>
                     <InlineEdit
                       activeClassName="editiginTag"
-                      change={ this.accountPasswordChanged.bind(this) }
+                      change={ this.accountTagChanged.bind(this) }
                       className="inlineEditTag"
-                      text={ item.accountPassword }
+                      text={ item.tag }
                       style={ !this.state.isLock ? { pointerEvents: 'none' } : null}
                       paramName={ item.id }
-                    validate={ this.customValidateTag }                    
+                      validate={ this.customValidateTag }                    
                     />
                   </div>
                   <div className="subButtons">
@@ -320,6 +326,7 @@ function mapDispatchToProps(dispatch) {
     addAccount,
     accountItemUpdate,
     accountPasswordUpdate,
+    accountTagUpdate,
     deleteAccount,
     addToFavorites
   }, dispatch);
