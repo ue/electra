@@ -100,7 +100,7 @@ class AccountList extends React.Component {
 
   handlePlusClick(e) {
     e.preventDefault();
-    // Dispatch props
+
     this.props.addAccount({
       accountItem: "Clik here and add your Account",
       accountPassword: "Also Password",
@@ -122,7 +122,7 @@ class AccountList extends React.Component {
   handleDelete(id) {
     this.props.deleteAccount(id);
   }
-  
+
   handleFavorites(id) {
     this.props.addToFavorites(id);
   }
@@ -148,9 +148,7 @@ class AccountList extends React.Component {
   }
 
   renderList() {
-    const {
-      accountItems,
-    } = this.props;
+    const { accountItems } = this.props;
 
     if (accountItems) {
       let shownAccountList = accountItems.filter(this.state.filter);
@@ -281,6 +279,9 @@ class AccountList extends React.Component {
               <FontIcon className="material-icons">settings</FontIcon>
             }/> */}
         </Tabs>
+        <TextField
+            hintText="Search for tags..."
+        />
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
