@@ -148,8 +148,12 @@ class AccountList extends React.Component {
   }
 
   renderList() {
-    if (this.props.accountItems) {
-      let shownAccountList = this.props.accountItems.filter(this.state.filter);
+    const {
+      accountItems,
+    } = this.props;
+
+    if (accountItems) {
+      let shownAccountList = accountItems.filter(this.state.filter);
 
       if (shownAccountList.length <= 0) {
         return (
@@ -209,7 +213,6 @@ class AccountList extends React.Component {
               />
               {
               this.state.slideIndex === 0 ?
-              
                 <div className="subLine">
                   <div className="editLine">
                     <div className="avatarTag">
@@ -220,7 +223,7 @@ class AccountList extends React.Component {
                       change={ this.accountTagChanged.bind(this) }
                       className="inlineEditTag"
                       text={ item.tag }
-                      style={ !this.state.isLock ? { pointerEvents: 'none' } : null}
+                      style={ !this.state.isLock ? { pointerEvents: 'none', cursor: 'default' } : null}
                       paramName={ item.id }
                       validate={ this.customValidateTag }                    
                     />
