@@ -32,15 +32,13 @@ import FontIcon from 'material-ui/lib/font-icon';
 // Swipe Views
 import SwipeableViews from 'react-swipeable-views';
 
-// Input Field
-import TextField from 'material-ui/lib/text-field';
-
+// Search Bar
+import SearchBar from 'material-ui-search-bar';
 // React Edit Inline
 import InlineEdit from 'react-edit-inline';
 
 // Copy To Clipboard
 import Clipboard from 'react-clipboard.js';
-import { Z_BLOCK } from 'zlib';
 
 //import Settings from './settings';
 //for next release settings page
@@ -56,7 +54,7 @@ const styles = {
 const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
   SHOW_FAVORITES: account => account.fav,
-  SHOW_ACTIVE: account => account.fav
+  SHOW_TAG: account => account.tag  
 }
 
 class AccountList extends React.Component {
@@ -70,7 +68,8 @@ class AccountList extends React.Component {
       accountItem: '',
       accountPassword: '',
       filter: ACCOUNT_FILTERS.SHOW_ALL,
-      isLock: true
+      isLock: true,
+      search: '#tag'
     }
 
     this.handleChange = this.handleChange.bind(this);    
@@ -135,23 +134,44 @@ class AccountList extends React.Component {
     return (text.length > 0 && text.length < 14);
   }
 
-  accountItemChanged(item){
+  accountItemChanged(item) {
     this.props.accountItemUpdate(item);
   }
 
-  accountPasswordChanged(item){
+  accountPasswordChanged(item) {
     this.props.accountPasswordUpdate(item);
   }
 
-  accountTagChanged(item){
+  accountTagChanged(item) {
     this.props.accountTagUpdate(item);
+    console.log(item);
+  }
+
+  handleSearch(item) {
+    this.setState({
+      search: item
+    });
+
+    console.log(item);
   }
 
   renderList() {
     const { accountItems } = this.props;
 
+    const {
+      filter,
+      search,
+      slideIndex,
+      isLock
+    } = this.state;
+
+    
     if (accountItems) {
-      let shownAccountList = accountItems.filter(this.state.filter);
+      let searchResult = this.state.search ? accountItems.filter(l => {
+        return l.tag.match( this.state.search );
+      }) : null;
+
+      let shownAccountList = searchResult || accountItems.filter(filter);
 
       if (shownAccountList.length <= 0) {
         return (
@@ -182,7 +202,7 @@ class AccountList extends React.Component {
                     className="inlineEdit"
                     text={ item.accountItem }
                     paramName={ item.id }
-                    style={ !this.state.isLock ? { pointerEvents: 'none' } : null}                    
+                    style={ !isLock ? { pointerEvents: 'none' } : null}                    
                     validate={ this.customValidateText }
                   />
                 }
@@ -204,13 +224,13 @@ class AccountList extends React.Component {
                     className="inlineEdit"
                     text={ item.accountPassword }
                     paramName={ item.id }
-                    style={ !this.state.isLock ? { pointerEvents: 'none' } : null}                    
+                    style={ !isLock ? { pointerEvents: 'none' } : null}                    
                     validate={ this.customValidateText }
                   />
                 }
               />
               {
-              this.state.slideIndex === 0 ?
+              slideIndex === 0 ?
                 <div className="subLine">
                   <div className="editLine">
                     <div className="avatarTag">
@@ -221,7 +241,7 @@ class AccountList extends React.Component {
                       change={ this.accountTagChanged.bind(this) }
                       className="inlineEditTag"
                       text={ item.tag }
-                      style={ !this.state.isLock ? { pointerEvents: 'none', cursor: 'default' } : null}
+                      style={ !isLock ? { pointerEvents: 'none', cursor: 'default' } : null}
                       paramName={ item.id }
                       validate={ this.customValidateTag }                    
                     />
@@ -250,11 +270,15 @@ class AccountList extends React.Component {
   }
 
   render() {
+    const {
+      slideIndex,
+      isLock
+    } = this.state;
     return (
       <div>
         <Tabs
           onChange={ this.handleChange }
-          value={ this.state.slideIndex }
+          value={ slideIndex }
           inkBarStyle={{background: '#FFFFFF'}}
           tabItemContainerStyle={{ backgroundColor: '#EA0A5A' }}
         >
@@ -279,12 +303,19 @@ class AccountList extends React.Component {
               <FontIcon className="material-icons">settings</FontIcon>
             }/> */}
         </Tabs>
-        <TextField
-            hintText="Search for tags..."
+        <SearchBar
+          className="search"
+          onChange={this.handleSearch.bind(this)}
+          onRequestSearch={() => console.log('onRequestSearch')}
+          hintText="Search for tag..."
+          style={{
+            margin: '0 auto',
+            maxWidth: 800
+          }}
         />
         <SwipeableViews
-          index={this.state.slideIndex}
-          onChangeIndex={this.handleChange}
+          index={ slideIndex }
+          onChangeIndex={ this.handleChange }
         >
           <div>
             <List style={styles}>
@@ -298,13 +329,13 @@ class AccountList extends React.Component {
             <FloatingActionButton mini={true} className="lockButton" onClick={this.handleLockClick.bind(this)}>
               <i className="material-icons">
               {
-                this.state.isLock ? "flip_to_back" : "flip_to_front"
+                isLock ? "flip_to_back" : "flip_to_front"
               }
               </i>     
             </FloatingActionButton>
           </div>
-          <div style={styles.slide}>
-            <List style={styles}>
+          <div style={ styles.slide }>
+            <List style={ styles }>
               {
                 this.renderList()
               }
