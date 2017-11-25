@@ -53,8 +53,7 @@ const styles = {
 
 const ACCOUNT_FILTERS = {
   SHOW_ALL: () => true,
-  SHOW_FAVORITES: account => account.fav,
-  SHOW_TAG: account => account.tag  
+  SHOW_FAVORITES: account => account.fav
 }
 
 class AccountList extends React.Component {
@@ -69,7 +68,7 @@ class AccountList extends React.Component {
       accountPassword: '',
       filter: ACCOUNT_FILTERS.SHOW_ALL,
       isLock: true,
-      search: '#tag'
+      search: ''
     }
 
     this.handleChange = this.handleChange.bind(this);    
@@ -142,17 +141,14 @@ class AccountList extends React.Component {
     this.props.accountPasswordUpdate(item);
   }
 
-  accountTagChanged(item) {
+  accountTagChanged(item) {   
     this.props.accountTagUpdate(item);
-    console.log(item);
   }
 
   handleSearch(item) {
     this.setState({
       search: item
     });
-
-    console.log(item);
   }
 
   renderList() {
@@ -164,11 +160,10 @@ class AccountList extends React.Component {
       slideIndex,
       isLock
     } = this.state;
-
     
     if (accountItems) {
-      let searchResult = this.state.search ? accountItems.filter(l => {
-        return l.tag.match( this.state.search );
+      let searchResult = search ? accountItems.filter(item => {
+        return item.tag.match( search );
       }) : null;
 
       let shownAccountList = searchResult || accountItems.filter(filter);
@@ -208,7 +203,7 @@ class AccountList extends React.Component {
                 }
               />
               <ListItem
-                className="listItem"              
+                className="listItem"
                 leftIcon={
                   <FontIcon className="material-icons quick-icons">lock_open</FontIcon>              
                 }
@@ -224,7 +219,7 @@ class AccountList extends React.Component {
                     className="inlineEdit"
                     text={ item.accountPassword }
                     paramName={ item.id }
-                    style={ !isLock ? { pointerEvents: 'none' } : null}                    
+                    style={ !isLock ? { pointerEvents: 'none' } : null}
                     validate={ this.customValidateText }
                   />
                 }
@@ -243,7 +238,7 @@ class AccountList extends React.Component {
                       text={ item.tag }
                       style={ !isLock ? { pointerEvents: 'none', cursor: 'default' } : null}
                       paramName={ item.id }
-                      validate={ this.customValidateTag }                    
+                      validate={ this.customValidateTag }
                     />
                   </div>
                   <div className="subButtons">
@@ -313,6 +308,7 @@ class AccountList extends React.Component {
             maxWidth: 800
           }}
         />
+        <Divider />
         <SwipeableViews
           index={ slideIndex }
           onChangeIndex={ this.handleChange }
