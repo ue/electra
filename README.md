@@ -5,7 +5,7 @@
 <p align="center"> Save your test accouns easy and use quickly! 😎</p>
 
 <p align="center"> Why you still keep on notepad? This app builded for instead of notepad! </p>
-<p align="center"><img align="center" src="https://media.giphy.com/media/3o6fJ9D5tx0KtS0LgA/giphy.gif"/></p>
+<p align="center"><img align="center" src="https://media.giphy.com/media/xT0xeBWlSZPpGfY5CE/giphy.gif"/><img align="center" src="https://media.giphy.com/media/3o6fIXuEdpYjIPyqC4/giphy.gif"/><img align="center" src="https://media.giphy.com/media/l2RnkV3AV1eMsrAv6/giphy.gif"/></p>
 
 ### Downloading And Installing
 
