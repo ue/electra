@@ -100,7 +100,7 @@ class AccountList extends React.Component {
     e.preventDefault();
 
     this.props.addAccount({
-      accountItem: "Clik here and add your Account",
+      accountItem: "Click here and add your Account",
       accountPassword: "Also Password",
       tag: "#tag",
       id: uuid.v4()
